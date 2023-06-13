@@ -1,0 +1,152 @@
+:root {
+    --transpWhite:  rgba(255, 255, 255, 0.745);
+    --darkFont: #3b3737;
+    --lightFont: #464242;
+
+  }
+@font-face {
+	font-family: 'Corbel'; 
+	src: url(/fonts/Corbel.ttf); 
+}
+@font-face {
+	font-family: 'Corbel'; 
+	src: url(/fonts/Corbel-Bold.ttf); 
+    font-weight: bold;
+}
+body {
+	margin: 0;
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Corbel';
+}
+.header {
+    height: 80px;
+    width: 100%;
+    background-color: white;
+}
+.flex{
+    display: flex;
+}
+.space-evenly{
+    justify-content: space-evenly;
+}
+.space-between{
+    justify-content: space-between;
+}
+.bold{
+    font-weight: bold;
+}
+.lightFont{
+    color: var(--lightFont);
+}
+.darkFont{
+    color: var(--darkFont)
+}
+.pd10{
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.mrgr10{
+    margin-right: 10px;
+}
+.mrgr15{
+    margin-right: 15px;
+}
+.mrgt20{
+    margin-top: 20px;
+}
+.mrgb15{
+    margin-bottom: 15px;
+}
+.mainBlock{
+    width: 100%;
+    height: 60%;
+    position: relative;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.dayHolder{
+    align-items: center;
+}
+.semiTransperentBg{
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color:#000000a9;
+}
+.dayBlock {
+    z-index: 200;
+    width: 340px;
+    font-size: 18px;
+    flex-direction: column;
+}
+.dayHeader{
+    border-radius: 5px;
+    background-color: var(--transpWhite);
+    width: 100%;
+    align-items: center;
+}
+.dayIcon{
+    height: 55px;
+    width: 55px;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    margin: 0 15px 0 10px;
+}
+/* состяние погодных иконок */
+.sun{
+    background-image: url(icons/sun.svg);
+}
+.cloudy{
+    background-image: url(icons/cloudy.svg);
+}
+.thunderstorm{
+    background-image: url(icons/thunderstorm.svg);
+}
+.rain{
+    background-image: url(icons/rain.svg);
+}
+.rainy{
+    background-image: url(icons/rainy.svg);
+}
+.snowy{
+    background-image: url(icons/snowy.svg);
+}
+.windy{
+    background-image: url(icons/windy.svg);
+}
+.heavy-rain{
+    background-image: url(icons/heavy-rain.svg);
+}
+.haze{
+    background-image: url(icons/haze.svg);
+}
+.hail{
+    background-image: url(icons/hail.svg);
+}
+
+/* состяние заднего фона */
+.sunBg{
+    background-image: url(bg/sunBg.jpg);
+}
+
+.dayContent{
+    border-radius: 5px;
+    background-color: var(--transpWhite);
+}
+
+.dayTemp{
+    font-size: 35px;
+}
+.dayTimeTempBlock{
+    margin-top: 20px;
+    border-top: 2px var(--darkFont);
+
+}
