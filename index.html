@@ -5,37 +5,139 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="js/jquery-min.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="js/google-translate.js"></script>
     <title>Weather Report</title>
 </head>
 <body>
-    <div class="header"></div>
-    <div class="sunBg mainBlock">
+    <div class="header flex space-evenly align-center">
+        <div class="logo partly-cloudy"></div>
+        <nav>
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Подробный прогноз</a></li>
+                <li><a href="#">Карта осадков</a></li>
+              </ul>
+        </nav>
+        <div class="CityName darkFont bold">Дворцовый округ, Санкт-Петербург</div>
+        <div id='google_translate_element'></div>
+    </div>
+    <div class="mainBlock sunBg flex align-center space-evenly">
         <div class="semiTransperentBg"></div>
-        <div class="dayHolder flex space-evenly ">
-            <div class="dayBlock flex">
-                <div class="dayHeader flex pd10 mrgb15">
-                    <div class="dayIcon sun"></div>
-                    <div class="dayDiscripion lightFont" id="todayLongDecsription">Сегодня солнечно</div>
-                </div>
-                <div class="dayContent pd10">
-                    <div class="CityName dayCityName lightFont">Дворцовый округ, Санкт-Петербург</div>
-                    <div class="flex">
-                        <div id="todayDate" class="bold darkFont mrgr10">Пн</div>
-                        <div id="CurrentTime">21:05</div>
-                    </div>
-                    <div class="flex space-between mrgt20">
-                        <div id="todayTemp" class="dayTemp bold">+19°</div>
-                        <div>
-                            <div id="todayDescription" class="bold darkFont">Ясно</div>
-                            <div id="feelsLike" class="lightFont mrgr15">Ощущается как +17°</div>
-                        </div>
-                    </div>
-                    <div class="dayTimeTempBlock">
-                        
-                    </div>
-                </div>
+        <div class="dayBlock flex">
+            <div class="dayHeader flex pd10 mrgb15 align-center">
+                <div class="dayIcon sun"></div>
+                <div class="dayDiscripion lightFont" id="todayLongDecsription">Сегодня солнечно</div>
             </div>
-            
+            <div class="dayContent">
+                <div class="CityName dayCityName lightFont">Дворцовый округ, Санкт-Петербург</div>
+                <div class="flex bold darkFont">
+                    <div id="todayDate" class=" mrgr10">Понедельник</div>
+                    <div id="CurrentTime">21:05</div>
+                </div>
+                <div class="flex space-between mrgt20">
+                    <div id="todayTemp" class="dayTemp bold darkFont">+19°</div>
+                    <div>
+                        <div id="todayDescription" class="bold darkFont">Ясно</div>
+                        <div id="feelsLike" class="lightFont mrgr15">Ощущается как +17°</div>
+                    </div>
+                </div>
+                </div>
+                <div class="timeTempHolder flex space-evenly align-center darkFont bold">
+                    <div class="timeTempBlock">
+                        <div id="todayFirstTime">21:00</div>
+                        <div id="todayFirstTemp">+19°</div>
+                    </div>
+                    <div class="timeTempBlock">
+                        <div id="todaySecondTime">22:00</div>
+                        <div id="todaySecondTemp">+17°</div>
+                    </div>
+                    <div class="timeTempBlock">
+                        <div id="todayThirdTime">23:00</div>
+                        <div id="todayThirdTemp">+16°</div>
+                    </div>
+                    <div class="timeTempBlock">
+                        <div id="todayFourthTime">Вт, 0:00</div>
+                        <div id="todayFourthTemp">+12°</div>
+                    </div>
+            </div>
+        </div>
+        <div class="dayBlock flex">
+            <div class="dayHeader flex pd10 mrgb15 align-center">
+                <div class="dayIcon partly-cloudy"></div>
+                <div class="dayDiscripion lightFont" id="todayLongDecsription">Завтра ожидается переменная облачность</div>
+            </div>
+            <div class="dayContent">
+                <div class="CityName dayCityName lightFont">Дворцовый округ, Санкт-Петербург</div>
+                <div id="tomorrowDate" class="mrgr10flex bold darkFont">Вторник</div>
+                <div class="flex space-around mrgt20 bold darkFont">
+                    <div>
+                        Ночью
+                        <div id="tomorrowNightTemp" class="dayTemp bold">+8°</div>
+                    </div>
+                    <div>
+                        Днем
+                        <div id="tomorrowDayTemp" class="dayTemp bold">+17°</div>
+                    </div>
+                </div>
+                </div>
+                <div class="timeTempHolder flex space-evenly align-center darkFont bold">
+                    <div class="timeTempBlock">
+                        7:00
+                        <div id="tomorrowFirstTemp">+10°</div>
+                    </div>
+                    <div class="timeTempBlock">
+                        12:00
+                        <div id="tomorrowSecondTemp">+15°</div>
+                    </div>
+                    <div class="timeTempBlock">
+                        17:00
+                        <div id="tomorrowThirdTemp">+19°</div>
+                    </div>
+                    <div class="timeTempBlock">
+                        21:0
+                        <div id="tomorrowFourthTemp">+12°</div>
+                    </div>
+            </div>
+        </div>
+        <div class="dayBlock flex">
+            <div class="dayHeader flex pd10 mrgb15 align-center">
+                <div class="dayIcon cloudy"></div>
+                <div class="dayDiscripion lightFont" id="dayAfterTomorrowLongDecsription">Послезавтра ожидается облачно</div>
+            </div>
+            <div class="dayContent">
+                <div class="CityName dayCityName lightFont">Дворцовый округ, Санкт-Петербург</div>
+                <div id="dayAfterTomorrowDate" class="mrgr10flex bold darkFont">Среда</div>
+                <div class="flex space-around mrgt20 bold darkFont">
+                    <div>
+                        Ночью
+                        <div id="dayAfterTomorrowNightTemp" class="dayTemp bold">+4°</div>
+                    </div>
+                    <div>
+                        Днем
+                        <div id="dayAfterTomorrowDayTemp" class="dayTemp bold">+14°</div>
+                    </div>
+                </div>
+                </div>
+                <div class="timeTempHolder flex space-evenly align-center darkFont bold">
+                    <div class="timeTempBlock">
+                        7:00
+                        <div id="dayAfterTomorrowFirstTemp">+6°</div>
+                    </div>
+                    <div class="timeTempBlock">
+                        12:00
+                        <div id="dayAfterTomorrowSecondTemp">+13°</div>
+                    </div>
+                    <div class="timeTempBlock">
+                        17:00
+                        <div id="dayAfterTomorrowThirdTemp">+14°</div>
+                    </div>
+                    <div class="timeTempBlock">
+                        21:0
+                        <div id="dayAfterTomorrowFourthTemp">+9°</div>
+                    </div>
+            </div>
         </div>
     </div>
     
