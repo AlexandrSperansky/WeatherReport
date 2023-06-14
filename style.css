@@ -6,11 +6,11 @@
   }
 @font-face {
 	font-family: 'Corbel'; 
-	src: url(/fonts/Corbel.ttf); 
+	src: url(fonts/Corbel.ttf); 
 }
 @font-face {
 	font-family: 'Corbel'; 
-	src: url(/fonts/Corbel-Bold.ttf); 
+	src: url(fonts/Corbel-Bold.ttf); 
     font-weight: bold;
 }
 body {
@@ -19,11 +19,58 @@ body {
     height: 100vh;
     width: 100vw;
     font-family: 'Corbel';
+    top: 0px !important;
+
+}
+.goog-te-gadget-simple{
+    background-color: #efefef;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 5px 0px !important;
+    transition: 0.3s;
+
+}
+.goog-te-gadget-simple:hover{
+    background-color: #d3d3d3;
+}
+.goog-te-gadget img {
+    display: none;
+}
+.goog-te-combo{
+    display: none;
+}
+.goog-te-gadget-simple span:nth-child(3), .goog-te-gadget-simple span:first-child{
+    margin-right: 5px;
+}
+
+.skiptranslate iframe{
+    visibility:hidden !important;
+    display:none !important;
 }
 .header {
     height: 80px;
     width: 100%;
     background-color: white;
+}
+.logo, .dayIcon{
+    height: 60px;
+    width: 60px;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+nav ul{
+    list-style: none;
+}
+nav ul li{
+    display: inline;
+}
+nav ul li a{
+   text-decoration: none;
+   color: var(--lightFont);
+   font-size: 20px;
+   margin-right: 20px;
 }
 .flex{
     display: flex;
@@ -34,6 +81,13 @@ body {
 .space-between{
     justify-content: space-between;
 }
+.space-around{
+    justify-content: space-around;
+}
+.align-center{
+    align-items: center;
+}
+
 .bold{
     font-weight: bold;
 }
@@ -65,12 +119,6 @@ body {
     height: 60%;
     position: relative;
     background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-.dayHolder{
-    align-items: center;
 }
 .semiTransperentBg{
     position: absolute;
@@ -86,23 +134,26 @@ body {
     flex-direction: column;
 }
 .dayHeader{
-    border-radius: 5px;
+    border-radius:  5px;
     background-color: var(--transpWhite);
     width: 100%;
-    align-items: center;
+    font-size: 19px;
+
 }
 .dayIcon{
-    height: 55px;
-    width: 55px;
-    background-position: center;
-    background-size:contain;
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-    margin: 0 15px 0 10px;
+    height: 48px;
+    width: 48px;
+    margin-right: 10px;
+}
+.location{
+    background-image: url(icons/location.svg);
 }
 /* состяние погодных иконок */
 .sun{
     background-image: url(icons/sun.svg);
+}
+.partly-cloudy{
+    background-image: url(icons/partly-cloudy.svg);
 }
 .cloudy{
     background-image: url(icons/cloudy.svg);
@@ -138,15 +189,24 @@ body {
 }
 
 .dayContent{
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background-color: var(--transpWhite);
+    padding: 10px 20px;
+    padding-bottom: 40px;
 }
 
 .dayTemp{
     font-size: 35px;
 }
-.dayTimeTempBlock{
-    margin-top: 20px;
-    border-top: 2px var(--darkFont);
+.timeTempHolder{
+    margin-top: 4px;
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: var(--transpWhite);
 
+}
+.timeTempBlock{
+    padding: 10px 0;
 }
