@@ -25,7 +25,7 @@ body {
 .goog-te-gadget-simple{
     background-color: #efefef;
     border: none !important;
-    border-radius: 8px !important;
+    border-radius: 7px !important;
     padding: 5px 0px !important;
     transition: 0.3s;
 
@@ -56,7 +56,7 @@ body {
     width: 100%;
     background-color: white;
 }
-.logo, .dayIcon, .weekDayIcon{
+.logo, .dayIcon, .weekDayIcon, .detailedIcon{
     height: 60px;
     width: 60px;
     background-position: center;
@@ -72,6 +72,10 @@ body {
 .weekDayIcon{
     height: 42px;
     width: 42px;
+}
+.detailedIcon{
+    height: 30px;
+    width: 30px;
 }
 nav ul{
     list-style: none;
@@ -153,7 +157,7 @@ nav ul li a{
     flex-direction: column;
 }
 .dayHeader{
-    border-radius:  5px;
+    border-radius:  7px;
     background-color: var(--transpWhite);
     width: 100%;
     font-size: 19px;
@@ -214,8 +218,8 @@ nav ul li a{
 
 
 .dayContent{
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     background-color: var(--transpWhite);
     padding: 10px 20px;
     padding-bottom: 40px;
@@ -227,8 +231,8 @@ nav ul li a{
 .timeTempHolder{
     margin-top: 4px;
     width: 100%;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
     background-color: var(--transpWhite);
 
 }
@@ -242,7 +246,7 @@ nav ul li a{
     background-color: var(--transpWhite);
     height: 160px;
     width: 80%;
-    border-radius: 5px;
+    border-radius: 7px;
 }
 
 .weekBlock{
@@ -265,6 +269,14 @@ nav ul li a{
 .weekTitle{
     font-size: 23px;
 }
+.detailedHeader{
+    position: relative;
+    top:20px
+}
 .detailedTodayReport{
+    z-index: 200;
+    width: 100%;
+    position: relative;
     background-color: #fff;
+    display: grid;
 }
