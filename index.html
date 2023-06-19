@@ -8,6 +8,7 @@
     <script src="js/jquery-min.js"></script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/google-translate.js"></script>
+    <script src="js/main.js"></script>
     <title>Weather Report</title>
 </head>
 <body>
@@ -20,128 +21,227 @@
                 <li><a href="#">Карта осадков</a></li>
               </ul>
         </nav>
-        <div class="CityName darkFont bold">Дворцовый округ, Санкт-Петербург</div>
+        <div class="cityName darkFont bold">Дворцовый округ, Санкт-Петербург</div>
         <div id='google_translate_element'></div>
     </div>
-    <div class="mainBlock sunBg flex align-center space-evenly">
+    <div class="mainBlock sunnyBg flex align-center space-evenly">
         <div class="semiTransperentBg"></div>
-        <div class="dayBlock flex">
-            <div class="dayHeader flex pd10 mrgb15 align-center">
-                <div class="dayIcon sun"></div>
-                <div class="dayDiscripion lightFont" id="todayLongDecsription">Сегодня солнечно</div>
+        <div class='daysHolder flex align-center space-evenly'>
+            <div class="dayBlock flex">
+                <div class="dayHeader flex pd10 mrgb15 align-center">
+                    <!--к блокам с классом todayIcon нужно добавить класс который соответвует иконке сегоднящней погоде (см. css-файл)-->
+                    <div class="todayIcon dayIcon sun"></div>
+                    <div class="dayDiscripion lightFont" id="todayLongDecsription">Сегодня солнечно</div>
+                </div>
+                <div class="dayContent">
+                    <div class="cityName daycityName lightFont">Дворцовый округ, Санкт-Петербург</div>
+                    <div class="flex bold darkFont">
+                         <!--в блок с id todayDateName нужно передать какой сегодня день недели-->
+                        <div id="todayDateName" class="mrgr10">Понедельник</div>
+                        <div id="CurrentTime">21:05</div>
+                    </div>
+                    <div class="flex space-between mrgt20">
+                        <!--в блоки с классом todayTemp нужно передать температуру сегодня сейчас-->
+                        <div class="todayTemp dayTemp bold darkFont">+19°</div>
+                        <div>
+                            <!--в блоки с классом todayDescription нужно передать описание сегодняшней погоды-->
+                            <div class="todayDescription bold darkFont">Ясно</div>
+                            <!--в блоки с классом todayFeelsLike нужно передать как ощущается сегодняшнаяя температура-->
+                            <div class="todayFeelsLike lightFont mrgr15">Ощущается как +17°</div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="timeTempHolder flex space-evenly align-center darkFont bold">
+                        <div class="timeTempBlock">
+                            <div id="todayFirstTime">21:00</div>
+                            <div id="todayFirstTemp">+19°</div>
+                        </div>
+                        <div class="timeTempBlock">
+                            <div id="todaySecondTime">22:00</div>
+                            <div id="todaySecondTemp">+17°</div>
+                        </div>
+                        <div class="timeTempBlock">
+                            <div id="todayThirdTime">23:00</div>
+                            <div id="todayThirdTemp">+16°</div>
+                        </div>
+                        <div class="timeTempBlock">
+                            <div id="todayFourthTime">Вт, 0:00</div>
+                            <div id="todayFourthTemp">+12°</div>
+                        </div>
+                </div>
             </div>
-            <div class="dayContent">
-                <div class="CityName dayCityName lightFont">Дворцовый округ, Санкт-Петербург</div>
-                <div class="flex bold darkFont">
-                    <div id="todayDate" class=" mrgr10">Понедельник</div>
-                    <div id="CurrentTime">21:05</div>
+            <div class="dayBlock flex">
+                <div class="dayHeader flex pd10 mrgb15 align-center">
+                    <div class="dayIcon partly-cloudy"></div>
+                    <div class="dayDiscripion lightFont" id="todayLongDecsription">Завтра ожидается переменная облачность</div>
                 </div>
-                <div class="flex space-between mrgt20">
-                    <div id="todayTemp" class="dayTemp bold darkFont">+19°</div>
-                    <div>
-                        <div id="todayDescription" class="bold darkFont">Ясно</div>
-                        <div id="feelsLike" class="lightFont mrgr15">Ощущается как +17°</div>
+                <div class="dayContent">
+                    <div id="tomorrowDate" class="mrgr10flex bold darkFont">Вторник</div>
+                    <div class="flex space-around mrgt20 bold darkFont">
+                        <div>
+                            Ночью
+                            <div id="tomorrowNightTemp" class="dayTemp bold">+8°</div>
+                        </div>
+                        <div>
+                            Днём
+                            <div id="tomorrowDayTemp" class="dayTemp bold">+17°</div>
+                        </div>
                     </div>
+                    </div>
+                    <div class="timeTempHolder flex space-evenly align-center darkFont bold">
+                        <div class="timeTempBlock">
+                            7:00
+                            <div id="tomorrowFirstTemp">+10°</div>
+                        </div>
+                        <div class="timeTempBlock">
+                            12:00
+                            <div id="tomorrowSecondTemp">+15°</div>
+                        </div>
+                        <div class="timeTempBlock">
+                            17:00
+                            <div id="tomorrowThirdTemp">+19°</div>
+                        </div>
+                        <div class="timeTempBlock">
+                            21:00
+                            <div id="tomorrowFourthTemp">+12°</div>
+                        </div>
                 </div>
+            </div>
+            <div class="dayBlock flex">
+                <div class="dayHeader flex pd10 mrgb15 align-center">
+                    <div class="dayIcon cloudy"></div>
+                    <div class="dayDiscripion lightFont" id="dayAfterTomorrowLongDecsription">Послезавтра ожидается облачно</div>
                 </div>
-                <div class="timeTempHolder flex space-evenly align-center darkFont bold">
-                    <div class="timeTempBlock">
-                        <div id="todayFirstTime">21:00</div>
-                        <div id="todayFirstTemp">+19°</div>
+                <div class="dayContent">
+                    <div id="dayAfterTomorrowDate" class="mrgr10flex bold darkFont">Среда</div>
+                    <div class="flex space-around mrgt20 bold darkFont">
+                        <div>
+                            Ночью
+                            <div id="dayAfterTomorrowNightTemp" class="dayTemp bold">+4°</div>
+                        </div>
+                        <div>
+                            Днём
+                            <div id="dayAfterTomorrowDayTemp" class="dayTemp bold">+14°</div>
+                        </div>
                     </div>
-                    <div class="timeTempBlock">
-                        <div id="todaySecondTime">22:00</div>
-                        <div id="todaySecondTemp">+17°</div>
                     </div>
-                    <div class="timeTempBlock">
-                        <div id="todayThirdTime">23:00</div>
-                        <div id="todayThirdTemp">+16°</div>
-                    </div>
-                    <div class="timeTempBlock">
-                        <div id="todayFourthTime">Вт, 0:00</div>
-                        <div id="todayFourthTemp">+12°</div>
-                    </div>
+                    <div class="timeTempHolder flex space-evenly align-center darkFont bold">
+                        <div class="timeTempBlock">
+                            7:00
+                            <div id="dayAfterTomorrowFirstTemp">+6°</div>
+                        </div>
+                        <div class="timeTempBlock">
+                            12:00
+                            <div id="dayAfterTomorrowSecondTemp">+13°</div>
+                        </div>
+                        <div class="timeTempBlock">
+                            17:00
+                            <div id="dayAfterTomorrowThirdTemp">+14°</div>
+                        </div>
+                        <div class="timeTempBlock">
+                            21:00
+                            <div id="dayAfterTomorrowFourthTemp">+9°</div>
+                        </div>
+                </div>
             </div>
         </div>
-        <div class="dayBlock flex">
-            <div class="dayHeader flex pd10 mrgb15 align-center">
-                <div class="dayIcon partly-cloudy"></div>
-                <div class="dayDiscripion lightFont" id="todayLongDecsription">Завтра ожидается переменная облачность</div>
+        <div class="weekReport flex align-center space-evenly">
+            <div class="weekBlock flex align-center">
+                <div class='weekTitle darkFont bold'>Сегодня</div>
+                <div class="todayDate weekDate bold">1 июня</div>
+                <!--к блокам с классом todayIcon нужно добавить класс который соответвует иконке сегоднящней погоде (см. css-файл)-->
+                <div class="todayIcon weekDayIcon sun"></div>
+                <div class="flex align-center">
+                    <div class="weekDay darkFont bold mrgr10">Днём</div>
+                    <!--в блоки с классом todayDayTemp нужно передать темепературу сегодня Днём-->
+                    <div class="todayDayTemp weekDayTemp bold darkFont">+19°</div>
+                </div>
+                <div class="flex align-center">
+                    <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
+                    <!--в блоки с классом todayNightTemp нужно передать темепературу сегодня ночью-->
+                    <div class="todayNightTemp weekNightTemp lightFont bold">+12°</div>
+                </div>
             </div>
-            <div class="dayContent">
-                <div class="CityName dayCityName lightFont">Дворцовый округ, Санкт-Петербург</div>
-                <div id="tomorrowDate" class="mrgr10flex bold darkFont">Вторник</div>
-                <div class="flex space-around mrgt20 bold darkFont">
-                    <div>
-                        Ночью
-                        <div id="tomorrowNightTemp" class="dayTemp bold">+8°</div>
-                    </div>
-                    <div>
-                        Днем
-                        <div id="tomorrowDayTemp" class="dayTemp bold">+17°</div>
-                    </div>
+            <div class="weekBlock flex align-center">
+                <!--в блок с id shortOneDayAfter нужно передать короткое название дня через один день-->
+                <div id='shortOneDayAfter'class='weekTitle darkFont bold'>Вт</div>
+                <!--в блок с id oneDayAfterDate нужно передать дату через один день-->
+                <div id='oneDayAfterDate' class="weekDate bold lightFont">3 июня</div>
+                 <!--к блокам с классом oneDayAfterIcon нужно добавить класс который соответвует иконке погоды через один день (см. css-файл)-->
+                <div class="oneDayAfterIcon weekDayIcon partly-cloudy"></div>
+                <div class="flex align-center">
+                    <div class="weekDay darkFont bold mrgr10">Днём</div>
+                    <!--в блоки с классом oneDayAfterTempAtDay нужно передать дневную темепературу через один день-->
+                    <div class="oneDayAfterTempAtDay weekDayTemp bold darkFont">+17°</div>
                 </div>
+                <div class="flex align-center">
+                    <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
+                    <!--в блоки с классом oneDayAfterTempAtNight нужно передать ночную темепературу через один день-->
+                    <div class="oneDayAfterTempAtNight weekNightTemp lightFont bold">+8°</div>
                 </div>
-                <div class="timeTempHolder flex space-evenly align-center darkFont bold">
-                    <div class="timeTempBlock">
-                        7:00
-                        <div id="tomorrowFirstTemp">+10°</div>
-                    </div>
-                    <div class="timeTempBlock">
-                        12:00
-                        <div id="tomorrowSecondTemp">+15°</div>
-                    </div>
-                    <div class="timeTempBlock">
-                        17:00
-                        <div id="tomorrowThirdTemp">+19°</div>
-                    </div>
-                    <div class="timeTempBlock">
-                        21:0
-                        <div id="tomorrowFourthTemp">+12°</div>
-                    </div>
+            </div>
+            <div class="weekBlock flex align-center">
+                <!--в блок с id shortTwoDaysAfter нужно передать короткое название дня через два дня-->
+                <div id='shortTwoDaysAfter'class='weekTitle darkFont bold'>Ср</div>
+                <!--в блок с id twoDaysAfterDate нужно передать дату через два дня-->
+                <div id='twoDaysAfterDate' class="weekDate bold lightFont">4 июня</div>
+                 <!--к блокам с классом twoDaysAfterIcon нужно добавить класс который соответвует иконке погоды через два дня (см. css-файл)-->
+                <div class="twoDaysAfterIcon weekDayIcon cloudy"></div>
+                <div class="flex align-center">
+                    <div class="weekDay darkFont bold mrgr10">Днём</div>
+                    <!--в блоки с классом twoDaysAfterTempAtDay нужно передать дневную темепературу через два дня-->
+                    <div class="twoDaysAfterTempAtDay weekDayTemp bold darkFont">+14°</div>
+                </div>
+                <div class="flex align-center">
+                    <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
+                    <!--в блоки с классом twoDaysAfterTempAtNight нужно передать ночную темепературу через два дня-->
+                    <div class="twoDaysAfterTempAtNight weekNightTemp lightFont bold">+4°</div>
+                </div>
+            </div>
+            <!--далее по аналогии с предыдущими днями - three, four, five-->
+            <div class="weekBlock flex align-center">
+                <div id='shortThreeDaysAfter'class='weekTitle darkFont bold'>Чт</div>
+                <div id='threeDaysAfterDate' class="weekDate bold lightFont">5 июня</div>
+                <div class="threeDaysAfterIcon weekDayIcon sun"></div>
+                <div class="flex align-center">
+                    <div class="weekDay darkFont bold mrgr10">Днём</div>
+                    <div class="threeDaysAfterTempAtDay weekDayTemp bold darkFont">+18°</div>
+                </div>
+                <div class="flex align-center">
+                    <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
+                    <div class="threeDaysAfterTempAtNight weekNightTemp lightFont bold">+13°</div>
+                </div>
+            </div>
+            <div class="weekBlock flex align-center">
+                <div id='shortFourDaysAfter'class='weekTitle darkFont bold'>Пт</div>
+                <div id='fourDaysAfterDate' class="weekDate bold lightFont">6 июня</div>
+                <div class="fourDaysAfterIcon weekDayIcon sun"></div>
+                <div class="flex align-center">
+                    <div class="weekDay darkFont bold mrgr10">Днём</div>
+                    <div class="foureDaysAfterTempAtDay weekDayTemp bold darkFont">+20°</div>
+                </div>
+                <div class="flex align-center">
+                    <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
+                    <div class="fourDaysAfterTempAtNight weekNightTemp lightFont bold">+12°</div>
+                </div>
+            </div>
+            <div class="weekBlock flex align-center">
+                <div id='shortFiveDaysAfter'class='weekTitle darkFont bold'>Сб</div>
+                <div id='fiveDaysAfterDate' class="weekDate bold lightFont">7 июня</div>
+                <div class="fiveDaysAfterIcon weekDayIcon rain"></div>
+                <div class="flex align-center">
+                    <div class="weekDay darkFont bold mrgr10">Днём</div>
+                    <div class="fiveeDaysAfterTempAtDay weekDayTemp bold darkFont">+16°</div>
+                </div>
+                <div class="flex align-center">
+                    <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
+                    <div class="fiveDaysAfterTempAtNight weekNightTemp lightFont bold">+8°</div>
+                </div>
             </div>
         </div>
-        <div class="dayBlock flex">
-            <div class="dayHeader flex pd10 mrgb15 align-center">
-                <div class="dayIcon cloudy"></div>
-                <div class="dayDiscripion lightFont" id="dayAfterTomorrowLongDecsription">Послезавтра ожидается облачно</div>
-            </div>
-            <div class="dayContent">
-                <div class="CityName dayCityName lightFont">Дворцовый округ, Санкт-Петербург</div>
-                <div id="dayAfterTomorrowDate" class="mrgr10flex bold darkFont">Среда</div>
-                <div class="flex space-around mrgt20 bold darkFont">
-                    <div>
-                        Ночью
-                        <div id="dayAfterTomorrowNightTemp" class="dayTemp bold">+4°</div>
-                    </div>
-                    <div>
-                        Днем
-                        <div id="dayAfterTomorrowDayTemp" class="dayTemp bold">+14°</div>
-                    </div>
-                </div>
-                </div>
-                <div class="timeTempHolder flex space-evenly align-center darkFont bold">
-                    <div class="timeTempBlock">
-                        7:00
-                        <div id="dayAfterTomorrowFirstTemp">+6°</div>
-                    </div>
-                    <div class="timeTempBlock">
-                        12:00
-                        <div id="dayAfterTomorrowSecondTemp">+13°</div>
-                    </div>
-                    <div class="timeTempBlock">
-                        17:00
-                        <div id="dayAfterTomorrowThirdTemp">+14°</div>
-                    </div>
-                    <div class="timeTempBlock">
-                        21:0
-                        <div id="dayAfterTomorrowFourthTemp">+9°</div>
-                    </div>
-            </div>
+        <div class="detailedTodayReport">
+
         </div>
     </div>
-    
-    
-
 </body>
 </html>
