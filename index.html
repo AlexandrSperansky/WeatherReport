@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="js/jquery-min.js"></script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/google-translate.js"></script>
     <script src="js/main.js"></script>
-    <title>Weather Report</title>
+    <script src="js/scroll.js"></script>
+    <title>Weatder Report</title>
 </head>
 <body>
     <div class="header flex space-evenly align-center">
-        <div class="logo partly-cloudy"></div>
+        <div class="logoHolder bold flex">
+            <div class="logo partly-cloudy"></div>
+            Погода
+        </div>
+        
         <nav>
             <ul>
                 <li><a href="#">Главная</a></li>
-                <li><a href="#">Подробный прогноз</a></li>
-                <li><a href="#">Карта осадков</a></li>
+                <li><a href="#detailedTodayReport">Подробный прогноз</a></li>
+                <li><a href="#map">Карта осадков</a></li>
               </ul>
         </nav>
         <!--в блоки с классом cityName нужно передать город и район пользователя-->
         <div class="cityName darkFont bold">Дворцовый округ, Санкт-Петербург</div>
         <div id='google_translate_element'></div>
     </div>
-    <div class="mainBlock sunnyBg flex align-center space-evenly">
+    <div id='mainBlock' class="sunnyBg flex align-center space-evenly">
         <div class="semiTransperentBg"></div>
         <div class='daysHolder flex align-center space-evenly'>
             <div class="dayBlock flex">
@@ -65,7 +70,7 @@
                             <div id="todaySecondTemp">+17°</div>
                         </div>
                         <div class="timeTempBlock">
-                            <div id="todayThirdTime">23:00</div>
+                            <div id="todayTdirdTime">23:00</div>
                             <div id="todayThirdTemp">+16°</div>
                         </div>
                         <div class="timeTempBlock">
@@ -216,145 +221,183 @@
                     <div class="threeDaysAfterTempAtNight weekNightTemp lightFont bold">+13°</div>
                 </div>
             </div>
-            <div class="weekBlock flex align-center">
-                <div id='shortFourDaysAfter'class='weekTitle darkFont bold'>Пт</div>
-                <div id='fourDaysAfterDate' class="weekDate bold lightFont">6 июня</div>
-                <div class="fourDaysAfterIcon weekDayIcon sun"></div>
-                <div class="flex align-center">
-                    <div class="weekDay darkFont bold mrgr10">Днём</div>
-                    <div class="foureDaysAfterTempAtDay weekDayTemp bold darkFont">+20°</div>
-                </div>
-                <div class="flex align-center">
-                    <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
-                    <div class="fourDaysAfterTempAtNight weekNightTemp lightFont bold">+12°</div>
-                </div>
-            </div>
-            <div class="weekBlock flex align-center">
-                <div id='shortFiveDaysAfter'class='weekTitle darkFont bold'>Сб</div>
-                <div id='fiveDaysAfterDate' class="weekDate bold lightFont">7 июня</div>
-                <div class="fiveDaysAfterIcon weekDayIcon rain"></div>
-                <div class="flex align-center">
-                    <div class="weekDay darkFont bold mrgr10">Днём</div>
-                    <div class="fiveeDaysAfterTempAtDay weekDayTemp bold darkFont">+16°</div>
-                </div>
-                <div class="flex align-center">
-                    <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
-                    <div class="fiveDaysAfterTempAtNight weekNightTemp lightFont bold">+8°</div>
-                </div>
-            </div>
         </div>
     </div>
-    <article class="detailedTodayReport">
-        <div class="detailedHeader">
-        <div id='todayNumDate'>1</div>
-        <div>
-            <div>июня</div>
+    <article id='detailedTodayReport'class="flex align-center">
+        <div class="detailedHeader flex">
+        <div id='todayNumDate' class='redFont'>1</div>
+        <div class="detailedHeaderTitle redFont">
+            <div id='todayMothDate'>июня,</div>
             <div>сегодня</div>
         </div>
         </div>
-        <table>
-            <thead>
-                <th colspan='3'></th>
-                <th>Давление</th>
-                <th>Влажност</th>
-                <th>Ветер</th>
-                <th>Ощущается как</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>Утром +16</th>
-                    <th>
-                        <div id="morningIcon" class="detailedIcon sun"></div>
-                    </th>
-                    <th>
-                        <div id="morningDecs">Ясно</div>
-                    </th>
-                    <th>
-                        <div id="morningPressure">
-                        766
-                        </div>
-                    </th>
-                    <th>
-                        <div id="morningHumidity">40%</div>
-                    </th>
-                    <th>
-                        <div id="morningWind">3.7</div>
-                    </th>
-                    <th>
-                        <div id="morningFeelsLike">+13°</div>
-                    </th>
-                </tr>
-                <tr>
-                    <th>Днем +19</th>
-                    <th>
-                        <div id="afternoonIcon" class="detailedIcon sun"></div>
-                    </th>
-                    <th>
-                        <div id="afternoonDecs">Ясно</div>
-                    </th>
-                    <th>
-                        <div id="afternoonPressure">
-                        762
-                        </div>
-                    </th>
-                    <th>
-                        <div id="afternoonHumidity">50%</div>
-                    </th>
-                    <th>
-                        <div id="afternoonWind">2.8</div>
-                    </th>
-                    <th>
-                        <div id="afternoonFeelsLike">+17°</div>
-                    </th>
-                </tr>
-                <tr>
-                    <th>Вечром +18</th>
-                    <th>
-                        <div id="afternoonIcon" class="detailedIcon sun"></div>
-                    </th>
-                    <th>
-                        <div id="afternoonDecs">Ясно</div>
-                    </th>
-                    <th>
-                        <div id="afternoonPressure">
-                        720
-                        </div>
-                    </th>
-                    <th>
-                        <div id="afternoonHumidity">30%</div>
-                    </th>
-                    <th>
-                        <div id="afternoonWind">2.8</div>
-                    </th>
-                    <th>
-                        <div id="afternoonFeelsLike">+16°</div>
-                    </th>
-                </tr>
-                <tr>
-                    <th>Ночью +18</th>
-                    <th>
-                        <div id="afternoonIcon" class="detailedIcon sun"></div>
-                    </th>
-                    <th>
-                        <div id="afternoonDecs">Ясно</div>
-                    </th>
-                    <th>
-                        <div id="afternoonPressure">
-                        720
-                        </div>
-                    </th>
-                    <th>
-                        <div id="afternoonHumidity">30%</div>
-                    </th>
-                    <th>
-                        <div id="afternoonWind">2.8</div>
-                    </th>
-                    <th>
-                        <div id="afternoonFeelsLike">+16°</div>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
+            <table class="weatherTable">
+                <thead class="tableHeader lightFont">
+                    <th colspan='3'></td>
+                    <td>Давление</td>
+                    <td>Влажность<br>
+                        мм рт. ст.
+                    </td>
+                    <td>Ветер, м/с</td>
+                    <td>Ощущается как</td>
+                </thead>
+                <tbody class="darkFont bold">
+                    <tr>
+                        <td>
+                            <div class='partOfday lightFont'>
+                                Утром
+                            </div>
+                            <div class="detailedTodayTem flex bold">
+                                <div id="minMorningTemp">
+                                    +18°
+                                </div>
+                                ...
+                                <div id="maxMorningTemp">
+                                    +19°
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="morningIcon" class="detailedIcon sun"></div>
+                        </td>
+                        <td>
+                            <div id="morningDecs" class="normal">Ясно</div>
+                        </td>
+                        <td>
+                            <div id="morningPressure">
+                            766
+                            </div>
+                        </td>
+                        <td>
+                            <div id="morningHumidity">40%</div>
+                        </td>
+                        <td>
+                            <div id="morningWind">3,7</div>
+                        </td>
+                        <td>
+                            <div id="morningFeelsLike">+13°</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class='partOfday lightFont'>
+                                Днём
+                            </div>
+                            <div class="detailedTodayTem flex bold">
+                                <div id="minAftrenoonTemp">
+                                    +19°
+                                </div>
+                                ...
+                                <div id="maxAfternoonTemp">
+                                    +20°
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="afternoonIcon" class="detailedIcon sun"></div>
+                        </td>
+                        <td>
+                            <div id="afternoonDecs" class="normal">Ясно</div>
+                        </td>
+                        <td>
+                            <div id="afternoonPressure">
+                            762
+                            </div>
+                        </td>
+                        <td>
+                            <div id="afternoonHumidity">50%</div>
+                        </td>
+                        <td>
+                            <div id="afternoonWind">2,8</div>
+                        </td>
+                        <td>
+                            <div id="afternoonFeelsLike">+17°</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class='partOfday lightFont'>
+                                Вечером
+                            </div>
+                            <div class="detailedTodayTem flex bold">
+                                <div id="minEveningTemp">
+                                    +17°
+                                </div>
+                                ...
+                                <div id="maxEveningTemp">
+                                    +16°
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="afternoonIcon" class="detailedIcon sun"></div>
+                        </td>
+                        <td>
+                            <div id="afternoonDecs" class="normal">Ясно</div>
+                        </td>
+                        <td>
+                            <div id="afternoonPressure">
+                            720
+                            </div>
+                        </td>
+                        <td>
+                            <div id="afternoonHumidity">30%</div>
+                        </td>
+                        <td>
+                            <div id="afternoonWind">2,8</div>
+                        </td>
+                        <td>
+                            <div id="afternoonFeelsLike">+16°</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class='partOfday lightFont'>
+                                Утром
+                            </div>
+                            <div class="detailedTodayTem flex bold">
+                                <div id="minNightTemp">
+                                    +10°
+                                </div>
+                                ...
+                                <div id="maxNightTemp">
+                                    +15°
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="afternoonIcon" class="detailedIcon sun"></div>
+                        </td>
+                        <td>
+                            <div id="afternoonDecs" class="normal">Ясно</div>
+                        </td>
+                        <td>
+                            <div id="afternoonPressure">
+                            720
+                            </div>
+                        </td>
+                        <td>
+                            <div id="afternoonHumidity">30%</div>
+                        </td>
+                        <td>
+                            <div id="afternoonWind">2,8</div>
+                        </td>
+                        <td>
+                            <div id="afternoonFeelsLike">+16°</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>        
     </article>
+
+    <div id="map" class="flex align-center">
+        <div class="mapTitle bold">Карта осадков</div>
+        <div id="weatherMap">
+
+        </div>
+    </div>
+    <div class="footer flex align-center">
+        <a href="https://github.com/AlexandrSperansky/WeatherReport" target="">github</a>
+    </div>
 </body>
 </html>
