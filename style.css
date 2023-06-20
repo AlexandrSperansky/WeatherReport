@@ -348,6 +348,7 @@ td div{
     height: 550px;
     width: 80%;
     margin: 30px 0;
+    
     background-position: center;
     background-size: cover;
     background-image: url('bg/mapExample.jpg');
