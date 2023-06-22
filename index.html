@@ -8,7 +8,6 @@
     <script src="js/jquery-min.js"></script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/google-translate.js"></script>
-    <script src="js/main.js"></script>
     <script src="js/scroll.js"></script>
     <title>Weatder Report</title>
 </head>
@@ -27,7 +26,7 @@
               </ul>
         </nav>
         <!--в блоки с классом cityName нужно передать город и район пользователя-->
-        <div class="cityName darkFont bold">Дворцовый округ, Санкт-Петербург</div>
+        <div class="cityName darkFont bold" id="cityName">Дворцовый округ, Санкт-Петербург</div>
         <div id='google_translate_element'></div>
     </div>
     <div id='mainBlock' class="sunnyBg flex align-center space-evenly">
@@ -399,5 +398,6 @@
     <div class="footer flex align-center">
         <a href="https://github.com/AlexandrSperansky/WeatherReport" target="">github</a>
     </div>
+    <script src="./js/main.js"></script>
 </body>
 </html>
