@@ -25,7 +25,6 @@
                 <li><a href="#map">Карта осадков</a></li>
               </ul>
         </nav>
-        <!--в блоки с классом cityName нужно передать город и район пользователя-->
         <div class="cityName darkFont bold" id="cityName">Дворцовый округ, Санкт-Петербург</div>
         <div id='google_translate_element'></div>
     </div>
@@ -40,7 +39,7 @@
                     <div class="dayDiscripion darkFont" id="todayLongDecsription">Сегодня солнечно</div>
                 </div>
                 <div class="dayContent">
-                    <div class="cityName daycityName lightFont">Дворцовый округ, Санкт-Петербург</div>
+                    <div class="cityName daycityName lightFont" id="cityName2">Дворцовый округ, Санкт-Петербург</div>
                     <div class="flex bold darkFont">
                          <!--в блок с id todayDateName нужно передать длинное название для недели сегодня-->
                         <div id="todayDateName" class="mrgr10">Понедельник</div>
@@ -49,12 +48,12 @@
                     </div>
                     <div class="flex space-between mrgt20">
                         <!--в блоки с классом todayTemp нужно передать температуру сегодня сейчас-->
-                        <div class="todayTemp dayTemp bold darkFont">+19°</div>
+                        <div class="todayTemp dayTemp bold darkFont" id="todayTempNow">+19°</div>
                         <div>
                             <!--в блоки с классом todaydecsription нужно передать описание сегодняшней погоды-->
                             <div class="todaydecsription bold darkFont">Ясно</div>
                             <!--в блоки с классом todayFeelsLike нужно передать как ощущается сегодняшнаяя температура-->
-                            <div class="todayFeelsLike lightFont mrgr15">Ощущается как +17°</div>
+                            <div class="todayFeelsLike lightFont mrgr15" id="todayFeelsLike">Ощущается как +17°</div>
                         </div>
                     </div>
                     </div>
@@ -162,12 +161,12 @@
                 <div class="flex align-center">
                     <div class="weekDay darkFont bold mrgr10">Днём</div>
                     <!--в блоки с классом todayTempatDay нужно передать темепературу сегодня Днём-->
-                    <div class="todayTempatDay weekDayTemp bold darkFont">+19°</div>
+                    <div class="todayTempatDay weekDayTemp bold darkFont" id="todayTempatDay">+19°</div>
                 </div>
                 <div class="flex align-center">
                     <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
                     <!--в блоки с классом todayTempatNight нужно передать темепературу сегодня ночью-->
-                    <div class="todayTempatNight weekNightTemp lightFont bold">+12°</div>
+                    <div class="todayTempatNight weekNightTemp lightFont bold" id="todayTempatNight">+12°</div>
                 </div>
             </div>
             <div class="weekBlock flex align-center">
