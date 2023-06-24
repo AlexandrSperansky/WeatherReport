@@ -230,7 +230,13 @@ nav ul li a{
 .windyBg{
     background-image: url(bg/windyBg.jpg);
 }
+.thunderstormBg{
+    background-image: url(bg/thunderstormBg.jpg);
+}
+.stormBg{
+    background-image: url(bg/stormBg.jpg);
 
+}
 
 .dayContent{
     border-top-left-radius: 7px;
