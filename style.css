@@ -1,5 +1,5 @@
 :root {
-    --transpWhite:  rgba(255, 255, 255, 0.745);
+    --transpWhite:  rgba(255, 255, 255, 0.636);
     --darkFont: #3b3737;
     --lightFont: #5b5454;
     --redFont: #d14b4b;
@@ -25,13 +25,15 @@ body {
 .goog-te-gadget-simple{
     background-color: #efefef;
     border: none !important;
-    border-radius: 7px !important;
-    padding: 5px 0px !important;
-    transition: 0.3s;
-
+    border-radius: 50px !important;
+    padding: 8px 3px !important;
+    transition: 0.2s;
+}
+.goog-te-gadget-simple span{
+    content: 'lang';
 }
 .goog-te-gadget-simple:hover{
-    background-color: #d3d3d3;
+    background-color: #d6d6d6;
 }
 .goog-te-gadget img {
     display: none;
@@ -44,7 +46,6 @@ body {
     font-weight: bold;
     font-size: 15px;
     color: var(--lightFont);
-
     margin-right: 5px;
 }
 
@@ -53,7 +54,7 @@ body {
     display:none !important;
 }
 .header {
-    height: 80px;
+    height: 70px;
     width: 100%;
     background-color: white;
 }
@@ -78,13 +79,48 @@ body {
     width: 48px;
     margin-right: 10px;
 }
+.todayInfoBlock{
+    margin-top: 25px;
+    width: 100%;
+}
+.todayInfoIcon, .windIcon, .pressureIcon, .humidityIcon{
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    margin-right: 5px;
+}
+.pressureIcon{
+    background-image: url('icons/pressure.png');
+}
+.windIcon{
+    background-image: url('icons/wind.png');
+}
+.humidityIcon{
+    background-image: url('icons/humidity.png');
+}
+.todayWindBlock{
+    font-size: 14px;
+    margin-right: 10px;
+}
+.todayPressureBlock{
+    font-size: 18px;
+    margin-right: 10px;
+}
+#todayWind{
+    font-size: 19px;
+    margin-right: 5px;
+}
+
+.todayFeelsLike{
+    font-size: 17px;
+}
 .weekDayIcon{
     height: 42px;
     width: 42px;
 }
 .detailedIcon{
-    height: 30px;
-    width: 30px;
+    height: 37px;
+    width: 39px;
 }
 nav ul{
     list-style: none;
@@ -97,6 +133,13 @@ nav ul li a{
    color: var(--lightFont);
    font-size: 18px;
    margin-right: 20px;
+   font-weight: bold;
+   padding: 8px;
+   border-radius: 20px;
+   transition: 0.2s;
+}
+nav ul li a:hover{
+    background-color: #d6d6d6;
 }
 .flex{
     display: flex;
@@ -113,7 +156,12 @@ nav ul li a{
 .align-center{
     align-items: center;
 }
-
+.align-end{
+    align-items:flex-end;
+}
+.justify-center{
+    justify-content: center;
+}
 .bold{
     font-weight: bold;
 }
@@ -147,7 +195,7 @@ nav ul li a{
     margin-bottom: 15px;
 }
 #mainBlock{
-    width: 100%;
+    width: 100vw;
     height: 570px;
     position: relative;
     background-size:cover;
@@ -160,62 +208,85 @@ nav ul li a{
     z-index: 100;
     width: 100%;
     height: 100%;
-    background-color:#000000a9;
+    background-color:#000000a0;
 }
 .daysHolder{
-    width: 100%;
-}
+    width: 100vw;
+justify-content: center;}
+
 .dayBlock {
     z-index: 200;
     width: 340px;
     font-size: 18px;
     flex-direction: column;
+    margin: 0px 20px;
+    scroll-snap-align: start;
+    scroll-margin-left:20px;
+    backdrop-filter: blur(4px);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
+
 .dayHeader{
     border-radius:  7px;
     background-color: var(--transpWhite);
     width: 100%;
     font-size: 19px;
-
+}
+.dayContent{
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    background-color: var(--transpWhite);
+    padding: 10px 20px;
+    padding-bottom: 30px;
+}
+.dayTemp{
+    font-size: 35px;
+}
+.timeTempHolder{
+    margin-top: 4px;
+    width: 100%;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background-color: var(--transpWhite);
+}
+.timeTempBlock{
+    padding: 10px 0;
+}
+.weekReport{
+    z-index: 200;
+    position: relative;
+    background-color: var(--transpWhite);
+    backdrop-filter: blur(4px);
+    height: 160px;
+    width: 65%;
+    border-radius: 7px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 
-.location{
-    background-image: url(icons/location.svg);
+.weekBlock{
+    flex-direction: column;
 }
-/* состяние погодных иконок */
-.sun{
-    background-image: url(icons/sun.svg);
+.weekDate{
+    font-size: 15px;
+    margin-bottom: 5px;
 }
-.partly-cloudy{
-    background-image: url(icons/partly-cloudy.svg);
+.weekDay{
+    font-size: 20px;
 }
-.cloudy{
-    background-image: url(icons/cloudy.svg);
+.weekNight{
+    font-size: 14px;
 }
-.thunderstorm{
-    background-image: url(icons/thunderstorm.svg);
+.weekDayTemp{
+    font-size: 25px;
 }
-.rain{
-    background-image: url(icons/rain.svg);
+.windDir{
+    font-size: 10px;
+    margin-left: 5px;
 }
-.rainy{
-    background-image: url(icons/rainy.svg);
+.weekTitle{
+    font-size: 20px;
 }
-.snowy{
-    background-image: url(icons/snowy.svg);
-}
-.windy{
-    background-image: url(icons/windy.svg);
-}
-.heavy-rain{
-    background-image: url(icons/heavy-rain.svg);
-}
-.haze{
-    background-image: url(icons/haze.svg);
-}
-.hail{
-    background-image: url(icons/hail.svg);
-}
+
 
 /* состяние заднего фона */
 .sunnyBg{
@@ -238,58 +309,6 @@ nav ul li a{
 
 }
 
-.dayContent{
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    background-color: var(--transpWhite);
-    padding: 10px 20px;
-    padding-bottom: 40px;
-}
-
-.dayTemp{
-    font-size: 35px;
-}
-.timeTempHolder{
-    margin-top: 4px;
-    width: 100%;
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-    background-color: var(--transpWhite);
-
-}
-.timeTempBlock{
-    padding: 10px 0;
-}
-
- .weekReport{
-    z-index: 200;
-    position: relative;
-    background-color: var(--transpWhite);
-    height: 160px;
-    width: 65%;
-    border-radius: 7px;
-}
-
-.weekBlock{
-    flex-direction: column;
-}
-.weekDate{
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-.weekDay{
-    font-size: 20px;
-}
-.weekNight{
-    font-size: 14px;
-}
-.weekDayTemp{
-    font-size: 25px;
-}
-
-.weekTitle{
-    font-size: 23px;
-}
 .detailedHeader{
     position: relative;
     top:25px;
@@ -312,7 +331,7 @@ nav ul li a{
     margin-right: 10px;
 }
 .detailedHeaderTitle{
-    font-size: 16px;
+    font-size: 17px;
 }
 .partOfday{
     font-size: 14px;
@@ -354,9 +373,6 @@ td div{
     height: 550px;
     width: 80%;
     margin: 30px 0;
-
-
-    
     background-position: center;
     background-size: cover;
     background-image: url('bg/mapExample.jpg');
@@ -372,3 +388,42 @@ td div{
     text-decoration: none;
     color: var(--darkFont)
 }
+
+@media(max-width: 842px) {
+    .daysHolder{
+        padding-bottom: 30px;
+        transform: rotateX(180deg);
+        z-index: 300;
+        overflow-x: scroll;
+        overflow-y:hidden;
+        scroll-snap-type: x mandatory;
+    }
+    .daysHolder::-webkit-scrollbar {
+        height: 8px;                     border-radius: 10%;    
+        margin: 0 10px;       
+      }
+      .daysHolder::-webkit-scrollbar-thumb {
+        background: var(--transpWhite);
+        border-radius: 10px 10px;
+        margin-left: 100px;
+      }
+    .dayBlock{
+        min-width: 90vw;
+        transform: rotateX(180deg);
+        position: relative;
+    }
+    .dayHeader{
+        border-radius: 15px;
+    }
+    .dayContent{
+        border-radius: 15x;
+    }
+    nav{
+        display: none;
+    }
+    .button{
+        z-index: 3000;
+    }
+}
+
+    

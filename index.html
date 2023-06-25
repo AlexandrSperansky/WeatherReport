@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <script src="js/jquery-min.js"></script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/google-translate.js"></script>
     <script src="js/scroll.js"></script>
-    <title>Weatder Report</title>
+    <script src="js/main.js"></script>
+    <title>Weather Report</title>
 </head>
 <body>
     <div class="header flex space-evenly align-center">
         <div class="logoHolder bold flex">
-            <div class="logo partly-cloudy"></div>
+            <div class="logo"></div>
             Погода
         </div>
         
@@ -28,19 +29,19 @@
         <div class="cityName darkFont bold" id="cityName">Дворцовый округ, Санкт-Петербург</div>
         <div id='google_translate_element'></div>
     </div>
-    <div id='mainBlock' class="thunderstormBg flex align-center space-evenly">
+    <div id='mainBlock' class="stormBg flex align-center space-evenly">
         <div class="semiTransperentBg"></div>
-        <div class='daysHolder flex align-center space-evenly'>
-            <div class="dayBlock flex">
+        <div class="daysHolder flex align-end">
+            <div id='firstDay'class="dayBlock flex">
                 <div class="dayHeader flex pd10 mrgb15 align-center">
                     <!--к блокам с классом todayIcon нужно добавить класс который соответвует иконке сегоднящней погоде (см. css-файл)-->
-                    <div class="todayIcon dayIcon sun"></div>
+                    <div id = 'todayIcon' class="dayIcon"></div>
                     <!--к блоку с id todayLongDecsription нужно передать длинное описание погоды-->
                     <div class="dayDiscripion darkFont" id="todayLongDecsription">Сегодня солнечно</div>
                 </div>
                 <div class="dayContent">
-                    <div class="cityName daycityName lightFont" id="cityName2">Дворцовый округ, Санкт-Петербург</div>
-                    <div class="flex bold darkFont">
+                    <div class="cityName daycityName bold darkFont" id="cityName2">Дворцовый округ, Санкт-Петербург</div>
+                    <div class="flex lightFont">
                          <!--в блок с id todayDateName нужно передать длинное название для недели сегодня-->
                         <div id="todayDateName" class="mrgr10">Понедельник</div>
                         <!--блок с id currentTime нужно обновлять каждую минуту показывая какое сейчас время-->
@@ -50,41 +51,54 @@
                         <!--в блоки с классом todayTemp нужно передать температуру сегодня сейчас-->
                         <div class="todayTemp dayTemp bold darkFont" id="todayTempNow">+19°</div>
                         <div>
-                            <!--в блоки с классом todaydecsription нужно передать описание сегодняшней погоды-->
-                            <div class="todaydecsription bold darkFont">Ясно</div>
                             <!--в блоки с классом todayFeelsLike нужно передать как ощущается сегодняшнаяя температура-->
                             <div class="todayFeelsLike lightFont mrgr15" id="todayFeelsLike">Ощущается как +17°</div>
                         </div>
                     </div>
+                    <div class="todayInfoBlock flex space-around">
+                        <div class="todayWindBlock lightFont flex align-end">
+                            <div class="todayInfoIcon windIcon"></div>
+                            <div id = todayWind class="bold darkFont"></div>
+                            м/с
+                        </div>
+                        <div class="todayPressureBlock lightFont flex align-end">
+                            <div class="todayInfoIcon pressureIcon"></div>
+                            <div id ='todayPressure'class="bold darkFont"></div>
+                        </div>
+                        <div class="todayHumidityBlock lightFont flex align-end">
+                            <div class="todayInfoIcon humidityIcon"></div>
+                            <div id ='todayHumidity'class="bold darkFont"></div>
+                        </div>
                     </div>
-                    <div class="timeTempHolder flex space-evenly align-center darkFont bold">
+                    </div>
+                    <div class="timeTempHolder flex space-evenly align-center">
                         <div class="timeTempBlock">
                             <!--в эти блоки передаем температуру по указанному времени-->
-                            <div id="todayFirstTime">21:00</div>
-                            <div id="todayFirstTemp">+19°</div>
+                            <div id="todayFirstTime" class="darkFont bold">8:00</div>
+                            <div id="todayFirstTemp" class="lightFont">+19°</div>
                         </div>
                         <div class="timeTempBlock">
-                            <div id="todaySecondTime">22:00</div>
-                            <div id="todaySecondTemp">+17°</div>
+                            <div id="todaySecondTime" class="darkFont bold">12:00</div>
+                            <div id="todaySecondTemp" class="lightFont">+17°</div>
                         </div>
                         <div class="timeTempBlock">
-                            <div id="todayTdirdTime">23:00</div>
-                            <div id="todayThirdTemp">+16°</div>
+                            <div id="todayTdirdTime"class="darkFont bold">17:00</div>
+                            <div id="todayThirdTemp" class="lightFont">+16°</div>
                         </div>
                         <div class="timeTempBlock">
-                            <div id="todayFourthTime">Вт, 0:00</div>
-                            <div id="todayFourthTemp">+12°</div>
+                            <div id="todayFourthTime"class="darkFont bold">21:00</div>
+                            <div id="todayFourthTemp" class="lightFont">+12°</div>
                         </div>
                 </div>
             </div>
-            <div class="dayBlock flex">
+            <div id='secondDay'class="dayBlock flex">
                 <div class="dayHeader flex pd10 mrgb15 align-center">
                     <!--к блокам с классом oneDayAfterIcon нужно добавить класс который соответвует иконке погоды через один день (см. css-файл)-->
-                    <div class="oneDayAfterIcon dayIcon partly-cloudy"></div>
+                    <div class="oneDayAfterIcon dayIcon"></div>
                     <div class="dayDiscripion darkFont" id="todayLongDecsription">Завтра ожидается переменная облачность</div>
                 </div>
                 <div class="dayContent">
-                    <div id="longOneDayAfter" class="mrgr10flex bold darkFont">Вторник</div>
+                    <div id="longOneDayAfter" class="mrgr10flex lightFont">Вторник</div>
                     <div class="flex space-around mrgt20 bold darkFont">
                         <div>
                             Ночью
@@ -98,7 +112,7 @@
                     </div>
                     <div class="timeTempHolder flex space-evenly align-center darkFont bold">
                         <div class="timeTempBlock">
-                            7:00
+                            8:00
                             <div id="oneDayAfterFirstTemp">+10°</div>
                         </div>
                         <div class="timeTempBlock">
@@ -115,13 +129,13 @@
                         </div>
                 </div>
             </div>
-            <div class="dayBlock flex">
+            <div id='thirdDay'class="dayBlock flex">
                 <div class="dayHeader flex pd10 mrgb15 align-center">
-                    <div class="dayIcon cloudy"></div>
+                    <div class="dayIcon"></div>
                     <div class="dayDiscripion darkFont" id="twoDaysAfterLongDecsription">Послезавтра ожидается облачно</div>
                 </div>
                 <div class="dayContent">
-                    <div id="longTwoDaysAfter" class="mrgr10flex bold darkFont">Среда</div>
+                    <div id="longTwoDaysAfter" class="mrgr10flex lightFont">Среда</div>
                     <div class="flex space-around mrgt20 bold darkFont">
                         <div>
                             Ночью
@@ -135,7 +149,7 @@
                     </div>
                     <div class="timeTempHolder flex space-evenly align-center darkFont bold">
                         <div class="timeTempBlock">
-                            7:00
+                            8:00
                             <div id="twoDaysAfterFirstTemp">+6°</div>
                         </div>
                         <div class="timeTempBlock">
@@ -154,10 +168,10 @@
             </div>
         </div>
         <div class="weekReport flex align-center space-evenly">
-            <div class="weekBlock flex align-center">
+            <div class="weekBlock flex align-center ">
                 <div class='weekTitle darkFont bold'>Сегодня</div>
-                <div id='todayFullDate' class="weekDate bold">1 июня</div>
-                <div class="todayIcon weekDayIcon sun"></div>
+                <div id='todayFullDate' class="weekDate lightFont">1 июня</div>
+                <div class="todayIcon weekDayIcon "></div>
                 <div class="flex align-center">
                     <div class="weekDay darkFont bold mrgr10">Днём</div>
                     <!--в блоки с классом todayTempatDay нужно передать темепературу сегодня Днём-->
@@ -173,9 +187,9 @@
                 <!--в блок с id shortOneDayAfter нужно передать короткое название дня через один день-->
                 <div id='shortOneDayAfter'class='weekTitle darkFont bold'>Вт</div>
                 <!--в блок с id oneDayAfterDate нужно передать дату через один день-->
-                <div id='oneDayAfterDate' class="weekDate bold lightFont">3 июня</div>
+                <div id='oneDayAfterDate' class="weekDate lightFont">3 июня</div>
                  <!--к блокам с классом oneDayAfterIcon нужно добавить класс который соответвует иконке погоды через один день (см. css-файл)-->
-                <div class="oneDayAfterIcon weekDayIcon partly-cloudy"></div>
+                <div class="oneDayAfterIcon weekDayIcon"></div>
                 <div class="flex align-center">
                     <div class="weekDay darkFont bold mrgr10">Днём</div>
                     <!--в блоки с классом oneDayAfterTempAtDay нужно передать дневную темепературу через один день-->
@@ -191,9 +205,9 @@
                 <!--в блок с id shortTwoDaysAfter нужно передать короткое название дня через два дня-->
                 <div id='shortTwoDaysAfter'class='weekTitle darkFont bold'>Ср</div>
                 <!--в блок с id twoDaysAfterDate нужно передать дату через два дня-->
-                <div id='twoDaysAfterDate' class="weekDate bold lightFont">4 июня</div>
+                <div id='twoDaysAfterDate' class="weekDate lightFont">4 июня</div>
                  <!--к блокам с классом twoDaysAfterIcon нужно добавить класс который соответвует иконке погоды через два дня (см. css-файл)-->
-                <div class="twoDaysAfterIcon weekDayIcon cloudy"></div>
+                <div class="twoDaysAfterIcon weekDayIcon"></div>
                 <div class="flex align-center">
                     <div class="weekDay darkFont bold mrgr10">Днём</div>
                     <!--в блоки с классом twoDaysAfterTempAtDay нужно передать дневную темепературу через два дня-->
@@ -208,8 +222,8 @@
             <!--далее по аналогии с предыдущими днями - three, four, five-->
             <div class="weekBlock flex align-center">
                 <div id='shortThreeDaysAfter'class='weekTitle darkFont bold'>Чт</div>
-                <div id='threeDaysAfterDate' class="weekDate bold lightFont">5 июня</div>
-                <div class="threeDaysAfterIcon weekDayIcon sun"></div>
+                <div id='threeDaysAfterDate' class="weekDate lightFont">5 июня</div>
+                <div class="threeDaysAfterIcon weekDayIcon "></div>
                 <div class="flex align-center">
                     <div class="weekDay darkFont bold mrgr10">Днём</div>
                     <div class="threeDaysAfterTempAtDay weekDayTemp bold darkFont">+18°</div>
@@ -246,17 +260,13 @@
                                 Утром
                             </div>
                             <div class="detailedTodayTem flex bold">
-                                <div id="minMorningTemp">
+                                <div id="morningTemp">
                                     +18°
-                                </div>
-                                ...
-                                <div id="maxMorningTemp">
-                                    +19°
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <div id="morningIcon" class="detailedIcon sun"></div>
+                            <div id="morningIcon" class="detailedIcon "></div>
                         </td>
                         <td>
                             <div id="morningDecs" class="normal">Ясно</div>
@@ -270,7 +280,10 @@
                             <div id="morningHumidity">40%</div>
                         </td>
                         <td>
-                            <div id="morningWind">3,7</div>
+                            <div class="flex align-end">
+                                <div id="morningWind">3,8</div>
+                                <div id="morningWindDir" class="windDir lightFont">СВ</div>
+                            </div>
                         </td>
                         <td>
                             <div id="morningFeelsLike">+13°</div>
@@ -282,17 +295,13 @@
                                 Днём
                             </div>
                             <div class="detailedTodayTem flex bold">
-                                <div id="minAftrenoonTemp">
+                                <div id="afternoonTemp">
                                     +19°
-                                </div>
-                                ...
-                                <div id="maxAfternoonTemp">
-                                    +20°
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <div id="afternoonIcon" class="detailedIcon sun"></div>
+                            <div id="afternoonIcon" class="detailedIcon "></div>
                         </td>
                         <td>
                             <div id="afternoonDecs" class="normal">Ясно</div>
@@ -306,7 +315,10 @@
                             <div id="afternoonHumidity">50%</div>
                         </td>
                         <td>
-                            <div id="afternoonWind">2,8</div>
+                            <div class="flex align-end">
+                                <div id="afternoonWind">2,8</div>
+                                <div id="afternoonWindDir" class="windDir lightFont">СЗ</div>
+                            </div>
                         </td>
                         <td>
                             <div id="afternoonFeelsLike">+17°</div>
@@ -318,70 +330,68 @@
                                 Вечером
                             </div>
                             <div class="detailedTodayTem flex bold">
-                                <div id="minEveningTemp">
+                                <div id="eveningTemp">
                                     +17°
-                                </div>
-                                ...
-                                <div id="maxEveningTemp">
-                                    +16°
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <div id="afternoonIcon" class="detailedIcon sun"></div>
+                            <div id="eveningIcon" class="detailedIcon "></div>
                         </td>
                         <td>
-                            <div id="afternoonDecs" class="normal">Ясно</div>
+                            <div id="eveningDecs" class="normal">Ясно</div>
                         </td>
                         <td>
-                            <div id="afternoonPressure">
+                            <div id="eveningPressure">
                             720
                             </div>
                         </td>
                         <td>
-                            <div id="afternoonHumidity">30%</div>
+                            <div id="eveningHumidity">30%</div>
                         </td>
                         <td>
-                            <div id="afternoonWind">2,8</div>
+                            <div class="flex align-end">
+                                <div id="eveningWind">2,8</div>
+                                <div id="eveningWindDir" class="windDir lightFont">СЗ</div>
+                            </div>
                         </td>
                         <td>
-                            <div id="afternoonFeelsLike">+16°</div>
+                            <div id="eveningFeelsLike">+16°</div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div class='partOfday lightFont'>
-                                Утром
+                                Ночью
                             </div>
                             <div class="detailedTodayTem flex bold">
-                                <div id="minNightTemp">
+                                <div id="nightTemp">
                                     +10°
-                                </div>
-                                ...
-                                <div id="maxNightTemp">
-                                    +15°
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <div id="afternoonIcon" class="detailedIcon sun"></div>
+                            <div id="nightIcon" class="detailedIcon "></div>
                         </td>
                         <td>
-                            <div id="afternoonDecs" class="normal">Ясно</div>
+                            <div id="nightDecs" class="normal">Ясно</div>
                         </td>
                         <td>
-                            <div id="afternoonPressure">
+                            <div id="nightPressure">
                             720
                             </div>
                         </td>
                         <td>
-                            <div id="afternoonHumidity">30%</div>
+                            <div id="nightHumidity">30%</div>
                         </td>
                         <td>
-                            <div id="afternoonWind">2,8</div>
+                            <div class="flex align-end">
+                                <div id="nightWind">2,8</div>
+                                <div id="nightWindDir" class="windDir lightFont">З</div>
+                            </div>
                         </td>
                         <td>
-                            <div id="afternoonFeelsLike">+16°</div>
+                            <div id="nightFeelsLike">+16°</div>
                         </td>
                     </tr>
                 </tbody>
@@ -394,9 +404,9 @@
 
         </div>
     </div>
+    <a href='http://en.sat24.com/en' target='sat24'><image src='https://api.sat24.com/animated/EU/visual/1/GTB%20Standard%20Time/3819073' width=400 height=291></a>
     <div class="footer flex align-center">
         <a href="https://github.com/AlexandrSperansky/WeatherReport" target="">github</a>
     </div>
-    <script src="./js/main.js"></script>
 </body>
 </html>
