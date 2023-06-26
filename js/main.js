@@ -72,8 +72,8 @@ function success(pos) {
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
 
-    const urlforForecast = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${crd.latitude},${crd.longitude}&lang=ru`;
-    const urlForFuture = `http://api.weatherapi.com/v1/future.json?key=${apiKey}&q=${crd.latitude},${crd.longitude}&lang=ru`
+    const urlforForecast = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${crd.latitude},${crd.longitude}&lang=ru`;
+    const urlForFuture = `https://api.weatherapi.com/v1/future.json?key=${apiKey}&q=${crd.latitude},${crd.longitude}&lang=ru`
 
     fetch(urlforForecast).then((response) => {
         return response.json()
