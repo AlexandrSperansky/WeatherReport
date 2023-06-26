@@ -1,5 +1,4 @@
 const apiKey = 'f28a7fa8da894874aa224742231106';
-const yandexApiKey = '37039c7a-2ca4-42b6-9bdf-fc3e03db9066'
 const dayIcons = 'icons/day/'
 const nightIcons = 'icons/night/'
 
@@ -73,7 +72,6 @@ function success(pos) {
     console.log(`Longitude: ${crd.longitude}`);
 
     const urlforForecast = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${crd.latitude},${crd.longitude}&days=4&lang=ru`;
-    const urlForFuture = `https://api.weatherapi.com/v1/future.json?key=${apiKey}&q=${crd.latitude},${crd.longitude}&lang=ru`
 
     fetch(urlforForecast).then((response) => {
         return response.json()
@@ -123,15 +121,6 @@ function success(pos) {
         document.querySelector('#twoDaysAfterTempAtDay').innerHTML = formatTemp(data.forecast.forecastday[2].day.avgtemp_c);
         document.querySelector('#twoDaysAfterTempAtNight').innerHTML = formatTemp(data.forecast.forecastday[2].day.mintemp_c)
         document.getElementById('twoDaysAfterIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[2].day.condition.icon)})`;
-    
-        //weekForecast
-        document.querySelector('#todayTempatDay').innerHTML = formatTemp(data.forecast.forecastday[0].day.avgtemp_c);
-        document.querySelector('#todayTempatNight').innerHTML = formatTemp(data.forecast.forecastday[0].day.mintemp_c);
-        document.querySelector('#oneDayAfterTempAtNight').innerHTML = formatTemp(data.forecast.forecastday[1].day.avgtemp_c);
-        document.querySelector('#oneDayAfterTempAtDay').innerHTML = formatTemp(data.forecast.forecastday[1].day.mintemp_c);
-        document.querySelector('#shortOneDayAfter').innerHTML = shortDayNames[getDayAfter(1).getDay()]
-        document.querySelector('#shortTwoDaysAfter').innerHTML = shortDayNames[getDayAfter(2).getDay()]
-        document.querySelector('#shortThreeDaysAfter').innerHTML = shortDayNames[getDayAfter(3).getDay()]
 
         //detailedForecast
         document.querySelector('#todayNumDate').innerHTML = currentDate.getDate()

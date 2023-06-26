@@ -63,7 +63,7 @@ body {
     color: black;
     align-items: flex-end;
 }
-.logo, .dayIcon, .weekDayIcon, .detailedIcon{
+.logo, .dayIcon, .detailedIcon{
     height: 50px;
     width: 50px;
     background-position: center;
@@ -113,10 +113,6 @@ body {
 
 .todayFeelsLike{
     font-size: 17px;
-}
-.weekDayIcon{
-    height: 42px;
-    width: 42px;
 }
 .detailedIcon{
     height: 37px;
@@ -252,40 +248,7 @@ justify-content: center;}
 .timeTempBlock{
     padding: 10px 0;
 }
-.weekReport{
-    z-index: 200;
-    position: relative;
-    background-color: var(--transpWhite);
-    backdrop-filter: blur(4px);
-    height: 160px;
-    width: 65%;
-    border-radius: 7px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-}
 
-.weekBlock{
-    flex-direction: column;
-}
-.weekDate{
-    font-size: 15px;
-    margin-bottom: 5px;
-}
-.weekDay{
-    font-size: 20px;
-}
-.weekNight{
-    font-size: 14px;
-}
-.weekDayTemp{
-    font-size: 25px;
-}
-.windDir{
-    font-size: 10px;
-    margin-left: 5px;
-}
-.weekTitle{
-    font-size: 20px;
-}
 
 
 /* состяние заднего фона */
