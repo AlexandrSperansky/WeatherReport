@@ -94,8 +94,8 @@
             <div id='secondDay'class="dayBlock flex">
                 <div class="dayHeader flex pd10 mrgb15 align-center">
                     <!--к блокам с классом oneDayAfterIcon нужно добавить класс который соответвует иконке погоды через один день (см. css-файл)-->
-                    <div class="oneDayAfterIcon dayIcon"></div>
-                    <div class="dayDiscripion darkFont" id="todayLongDecsription">Завтра ожидается переменная облачность</div>
+                    <div class="oneDayAfterIcon dayIcon" id="oneDayAfterIcon"></div>
+                    <div class="dayDiscripion darkFont" id="OneDayAfterLongDecsription">Завтра ожидается переменная облачность</div>
                 </div>
                 <div class="dayContent">
                     <div id="longOneDayAfter" class="mrgr10flex lightFont">Вторник</div>
@@ -131,7 +131,7 @@
             </div>
             <div id='thirdDay'class="dayBlock flex">
                 <div class="dayHeader flex pd10 mrgb15 align-center">
-                    <div class="dayIcon"></div>
+                    <div class="dayIcon" id="twoDaysAfterIcon"></div>
                     <div class="dayDiscripion darkFont" id="twoDaysAfterLongDecsription">Послезавтра ожидается облачно</div>
                 </div>
                 <div class="dayContent">
@@ -207,16 +207,16 @@
                 <!--в блок с id twoDaysAfterDate нужно передать дату через два дня-->
                 <div id='twoDaysAfterDate' class="weekDate lightFont">4 июня</div>
                  <!--к блокам с классом twoDaysAfterIcon нужно добавить класс который соответвует иконке погоды через два дня (см. css-файл)-->
-                <div class="twoDaysAfterIcon weekDayIcon"></div>
+                <div class="twoDaysAfterIcon weekDayIcon" id=""></div>
                 <div class="flex align-center">
                     <div class="weekDay darkFont bold mrgr10">Днём</div>
                     <!--в блоки с классом twoDaysAfterTempAtDay нужно передать дневную темепературу через два дня-->
-                    <div class="twoDaysAfterTempAtDay weekDayTemp bold darkFont">+14°</div>
+                    <div class="twoDaysAfterTempAtDay weekDayTemp bold darkFont" id="twoDaysAfterTempAtDay">+14°</div>
                 </div>
                 <div class="flex align-center">
                     <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
                     <!--в блоки с классом twoDaysAfterTempAtNight нужно передать ночную темепературу через два дня-->
-                    <div class="twoDaysAfterTempAtNight weekNightTemp lightFont bold">+4°</div>
+                    <div class="twoDaysAfterTempAtNight weekNightTemp lightFont bold" id="twoDaysAfterTempAtNight">+4°</div>
                 </div>
             </div>
             <!--далее по аналогии с предыдущими днями - three, four, five-->
@@ -226,11 +226,11 @@
                 <div class="threeDaysAfterIcon weekDayIcon "></div>
                 <div class="flex align-center">
                     <div class="weekDay darkFont bold mrgr10">Днём</div>
-                    <div class="threeDaysAfterTempAtDay weekDayTemp bold darkFont">+18°</div>
+                    <div class="threeDaysAfterTempAtDay weekDayTemp bold darkFont" id="threeDaysAfterTempAtDay">+18°</div>
                 </div>
                 <div class="flex align-center">
                     <div class='weekNight lightFont mrgr10 bold'>Ночью</div>
-                    <div class="threeDaysAfterTempAtNight weekNightTemp lightFont bold">+13°</div>
+                    <div class="threeDaysAfterTempAtNight weekNightTemp lightFont bold" id="threeDaysAfterTempAtNight">+13°</div>
                 </div>
             </div>
         </div>
@@ -404,7 +404,7 @@
 
         </div>
     </div>
-    <a href='http://en.sat24.com/en' target='sat24'><image src='https://api.sat24.com/animated/EU/visual/1/GTB%20Standard%20Time/3819073' width=400 height=291></a>
+    <!-- <a href='http://en.sat24.com/en' target='sat24'><image src='https://api.sat24.com/animated/EU/visual/1/GTB%20Standard%20Time/3819073' width=400 height=291></a> -->
     <div class="footer flex align-center">
         <a href="https://github.com/AlexandrSperansky/WeatherReport" target="">github</a>
     </div>

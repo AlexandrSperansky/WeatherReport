@@ -40,7 +40,7 @@ function getDayAfter(num) {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + num); // even 32 is acceptable
     return tomorrow
-}
+};
 
 function getTimeNow(){
     dateNow = new Date();
@@ -72,7 +72,7 @@ function success(pos) {
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
 
-    const urlforForecast = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${crd.latitude},${crd.longitude}&lang=ru`;
+    const urlforForecast = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${crd.latitude},${crd.longitude}&days=4&lang=ru`;
     const urlForFuture = `https://api.weatherapi.com/v1/future.json?key=${apiKey}&q=${crd.latitude},${crd.longitude}&lang=ru`
 
     fetch(urlforForecast).then((response) => {
@@ -104,10 +104,31 @@ function success(pos) {
 
         document.getElementById('todayIcon').style.backgroundImage = `url(${makeIconPath(data.current.condition.icon)})`;
 
+        //second card
+        document.querySelector('#oneDayAfterFirstTemp').innerHTML = formatTemp(data.forecast.forecastday[1].hour[8].temp_c);
+        document.querySelector('#oneDayAfterSecondTemp').innerHTML = formatTemp(data.forecast.forecastday[1].hour[12].temp_c);
+        document.querySelector('#oneDayAfterThirdTemp').innerHTML = formatTemp(data.forecast.forecastday[1].hour[17].temp_c);
+        document.querySelector('#oneDayAfterFourthTemp').innerHTML = formatTemp(data.forecast.forecastday[1].hour[21].temp_c);
+        document.querySelector('#OneDayAfterLongDecsription').innerHTML = `Завтра ожидается ${data.forecast.forecastday[1].day.condition.text.toLowerCase()}`;
+        document.querySelector('#oneDayAfterTempAtDay').innerHTML = formatTemp(data.forecast.forecastday[1].day.avgtemp_c);
+        document.querySelector('#oneDayAfterTempAtNight').innerHTML = formatTemp(data.forecast.forecastday[1].day.mintemp_c)
+        document.getElementById('oneDayAfterIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[1].day.condition.icon)})`;
 
+        //third card
+        document.querySelector('#twoDaysAfterFirstTemp').innerHTML = formatTemp(data.forecast.forecastday[2].hour[8].temp_c);
+        document.querySelector('#twoDaysAfterSecondTemp').innerHTML = formatTemp(data.forecast.forecastday[2].hour[12].temp_c);
+        document.querySelector('#twoDaysAfterThirdTemp').innerHTML = formatTemp(data.forecast.forecastday[2].hour[17].temp_c);
+        document.querySelector('#twoDaysAfterFourthTemp').innerHTML = formatTemp(data.forecast.forecastday[2].hour[21].temp_c);
+        document.querySelector('#twoDaysAfterLongDecsription').innerHTML = `Послезавтра ожидается ${data.forecast.forecastday[2].day.condition.text.toLowerCase()}`;
+        document.querySelector('#twoDaysAfterTempAtDay').innerHTML = formatTemp(data.forecast.forecastday[2].day.avgtemp_c);
+        document.querySelector('#twoDaysAfterTempAtNight').innerHTML = formatTemp(data.forecast.forecastday[2].day.mintemp_c)
+        document.getElementById('twoDaysAfterIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[2].day.condition.icon)})`;
+    
         //weekForecast
         document.querySelector('#todayTempatDay').innerHTML = formatTemp(data.forecast.forecastday[0].day.avgtemp_c);
-        document.querySelector('#todayTempatNight').innerHTML = formatTemp(data.forecast.forecastday[0].day.mintemp_c)
+        document.querySelector('#todayTempatNight').innerHTML = formatTemp(data.forecast.forecastday[0].day.mintemp_c);
+        document.querySelector('#oneDayAfterTempAtNight').innerHTML = formatTemp(data.forecast.forecastday[1].day.avgtemp_c);
+        document.querySelector('#oneDayAfterTempAtDay').innerHTML = formatTemp(data.forecast.forecastday[1].day.mintemp_c);
         document.querySelector('#shortOneDayAfter').innerHTML = shortDayNames[getDayAfter(1).getDay()]
         document.querySelector('#shortTwoDaysAfter').innerHTML = shortDayNames[getDayAfter(2).getDay()]
         document.querySelector('#shortThreeDaysAfter').innerHTML = shortDayNames[getDayAfter(3).getDay()]
