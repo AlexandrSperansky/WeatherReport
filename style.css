@@ -15,7 +15,7 @@
 }
 body {
 	margin: 0;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     height: 100vh;
     width: 100vw;
     font-family: 'Corbel';
@@ -79,45 +79,7 @@ body {
     width: 48px;
     margin-right: 10px;
 }
-.todayInfoBlock{
-    margin-top: 25px;
-    width: 100%;
-}
-.todayInfoIcon, .windIcon, .pressureIcon, .humidityIcon{
-    width: 20px;
-    height: 20px;
-    background-size: contain;
-    margin-right: 5px;
-}
-.pressureIcon{
-    background-image: url('icons/pressure.png');
-}
-.windIcon{
-    background-image: url('icons/wind.png');
-}
-.humidityIcon{
-    background-image: url('icons/humidity.png');
-}
-.todayWindBlock{
-    font-size: 14px;
-    margin-right: 10px;
-}
-.todayPressureBlock{
-    font-size: 18px;
-    margin-right: 10px;
-}
-#todayWind{
-    font-size: 19px;
-    margin-right: 5px;
-}
 
-.todayFeelsLike{
-    font-size: 17px;
-}
-.detailedIcon{
-    height: 37px;
-    width: 39px;
-}
 nav ul{
     list-style: none;
 }
@@ -192,12 +154,16 @@ nav ul li a:hover{
 }
 #mainBlock{
     width: 100vw;
-    height: 570px;
+    height: 470px;
     position: relative;
     background-size:cover;
     background-position: top;
     background-repeat: no-repeat;
     flex-direction: column;
+    background-image: url('bg/sunny1.jpg');
+}
+#cityName{
+    position: relative;
 }
 .semiTransperentBg{
     position: absolute;
@@ -212,6 +178,7 @@ justify-content: center;}
 
 .dayBlock {
     z-index: 200;
+    position: relative;
     width: 340px;
     font-size: 18px;
     flex-direction: column;
@@ -220,8 +187,27 @@ justify-content: center;}
     scroll-margin-left:20px;
     backdrop-filter: blur(4px);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-}
+  transition:opacity 0.5s linear;
 
+}
+.blockLoading::after{
+    content: '';
+    z-index: 400;
+    border-radius:  7px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #4848489a, #d8d8d8a5);
+	background-size: 400% 400%;
+    top: 50%;
+    transform: translateY(-50%);
+    content: "";
+	animation: gradient 2s ease infinite;
+    visibility: visible
+}
+.hide{
+    visibility: hidden
+}
 .dayHeader{
     border-radius:  7px;
     background-color: var(--transpWhite);
@@ -249,29 +235,6 @@ justify-content: center;}
     padding: 10px 0;
 }
 
-
-
-/* состяние заднего фона */
-.sunnyBg{
-    background-image: url(bg/sunnyBg.jpg);
-}
-.cloudyBg{
-    background-image: url(bg/cloudyBg.jpg);
-}
-.rainyBg{
-    background-image: url(bg/rainyBg.jpg);
-}
-.windyBg{
-    background-image: url(bg/windyBg.jpg);
-}
-.thunderstormBg{
-    background-image: url(bg/thunderstormBg.jpg);
-}
-.stormBg{
-    background-image: url(bg/stormBg.jpg);
-
-}
-
 .detailedHeader{
     position: relative;
     top:25px;
@@ -283,6 +246,7 @@ justify-content: center;}
     padding-bottom: 50px;
     padding-top: 10px;
     z-index: 200;
+    position: relative;
     flex-direction: column;
     position: relative;
     background-color: #fff;
@@ -293,6 +257,59 @@ justify-content: center;}
     line-height: 69px;
     margin-right: 10px;
 }
+.infoBlock{
+    margin-top: 25px;
+    width: 100%;
+}
+.infoIcon, .windIcon, .pressureIcon, .humidityIcon{
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    margin-right: 5px;
+}
+.pressureIcon{
+    background-image: url('icons/pressure.png');
+}
+.windIcon{
+    background-image: url('icons/wind.png');
+}
+.humidityIcon{
+    background-image: url('icons/humidity.png');
+}
+.windBlock{
+    font-size: 14px;
+    margin-right: 10px;
+}
+.pressureBlock{
+    font-size: 18px;
+    margin-right: 10px;
+}
+#todayWind{
+    font-size: 19px;
+    margin-right: 5px;
+}
+
+.todayFeelsLike{
+    font-size: 17px;
+}
+.detailedIcon{
+    height: 37px;
+    width: 39px;
+}
+
+ 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 .detailedHeaderTitle{
     font-size: 17px;
 }
@@ -305,6 +322,7 @@ justify-content: center;}
 }
 .weatherTable{
     width: 70%;
+    position: relative;
 }
 .tableHeader{
     font-size: 15px;

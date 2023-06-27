@@ -2,24 +2,7 @@ const apiKey = 'f28a7fa8da894874aa224742231106';
 const dayIcons = 'icons/day/'
 const nightIcons = 'icons/night/'
 
-const longDayNames = {
-    0: 'Воскресенье',
-    1: 'Понедельник',
-    2: 'Вторник',
-    3: 'Среда',
-    4: 'Четверг',
-    5: 'Пятница',
-    6: 'Суббота'
-}
-const shortDayNames = {
-    0: 'Вс',
-    1: 'Пн',
-    2: 'Вт',
-    3: 'Ср',
-    4: 'Чт',
-    5: 'Пт',
-    6: 'Сб'
-}
+
 const windDirTranslate = (direction) => {
     const windDir = {
         N: 'С',
@@ -35,10 +18,19 @@ const windDirTranslate = (direction) => {
         return windDir[direction[1]] + windDir[direction[0]]
     }
 }
-function getDayAfter(num) {
+function getDayName(num) {
+    const longDayNames = {
+        0: 'Воскресенье',
+        1: 'Понедельник',
+        2: 'Вторник',
+        3: 'Среда',
+        4: 'Четверг',
+        5: 'Пятница',
+        6: 'Суббота'
+    }
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + num); // even 32 is acceptable
-    return tomorrow
+    return longDayNames[tomorrow.getDay()]
 };
 
 function getTimeNow(){
@@ -76,13 +68,36 @@ function success(pos) {
     fetch(urlforForecast).then((response) => {
         return response.json()
     }).then((data) => {
+
+        for (const block of document.getElementsByClassName('dayBlock')){
+            block.classList.toggle('hide')
+            block.classList.toggle('blockLoading')
+        }
+        document.querySelector('table').classList.toggle('hide')
+        document.querySelector('table').classList.toggle('blockLoading')
+
+        document.querySelector('#cityName').classList.toggle('hide')
+
+        document.querySelector('.detailedHeaderTitle').classList.toggle('hide')
+
+        document.querySelector('#todayNumDate').classList.toggle('hide')
+
         var city = data.location.name;
         var currentDate = new Date()
         var isDayNow = getTimeNow().split(":") > 6 && getTimeNow().split(":") < 21
-        const makeIconPath = (icon) => {
-            return (isDayNow ? dayIcons : nightIcons) + icon.split('/').at(-1)
+
+        const makeIconPath = (icon, today=true) => {
+            if (today){
+                return  (isDayNow ? dayIcons : nightIcons) + icon.split('/').at(-1)
+            } else {
+                return dayIcons + icon.split('/').at(-1)
+            }
         }
-        console.log(data);
+        const setBg = (decscription) => {
+            const desc = decscription.toLowerCase()
+            if (decs.includes('дожд') || decs.includes('ливень')){
+            }
+        }
         //header
         document.querySelector("#cityName").innerHTML = city;
 
@@ -95,7 +110,7 @@ function success(pos) {
         document.querySelector('#todayTempNow').innerHTML = formatTemp(data.current.temp_c);
         document.querySelector('#todayFeelsLike').innerHTML = `Ощущается как ${formatTemp(data.current.feelslike_c)}`;
         document.querySelector('#todayLongDecsription').innerHTML = data.current.condition.text;
-        document.querySelector('#todayDateName').innerHTML = longDayNames[currentDate.getDay()];
+        document.querySelector('#todayDateName').innerHTML = getDayName(0);
         document.querySelector('#todayWind').innerHTML =(data.current.wind_kph / 3.6).toFixed(1);
         document.querySelector('#todayPressure').innerHTML = Math.floor(data.current.pressure_mb * 0.750064);
         document.querySelector('#todayHumidity').innerHTML = `${data.current.humidity}%`;
@@ -103,6 +118,7 @@ function success(pos) {
         document.getElementById('todayIcon').style.backgroundImage = `url(${makeIconPath(data.current.condition.icon)})`;
 
         //second card
+        document.querySelector('#longOneDayAfter').innerHTML = getDayName(1)
         document.querySelector('#oneDayAfterFirstTemp').innerHTML = formatTemp(data.forecast.forecastday[1].hour[8].temp_c);
         document.querySelector('#oneDayAfterSecondTemp').innerHTML = formatTemp(data.forecast.forecastday[1].hour[12].temp_c);
         document.querySelector('#oneDayAfterThirdTemp').innerHTML = formatTemp(data.forecast.forecastday[1].hour[17].temp_c);
@@ -110,9 +126,14 @@ function success(pos) {
         document.querySelector('#OneDayAfterLongDecsription').innerHTML = `Завтра ожидается ${data.forecast.forecastday[1].day.condition.text.toLowerCase()}`;
         document.querySelector('#oneDayAfterTempAtDay').innerHTML = formatTemp(data.forecast.forecastday[1].day.avgtemp_c);
         document.querySelector('#oneDayAfterTempAtNight').innerHTML = formatTemp(data.forecast.forecastday[1].day.mintemp_c)
-        document.getElementById('oneDayAfterIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[1].day.condition.icon)})`;
+        document.getElementById('oneDayAfterIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[1].day.condition.icon, false)})`;
+        document.querySelector('#oneDayAfterWind').innerHTML = (data.forecast.forecastday[1].day.maxwind_kph / 3.6).toFixed(1);
+        document.querySelector('#oneDayAfterPressure').innerHTML = Math.floor(data.forecast.forecastday[1].hour[14].pressure_mb * 0.750064);
+        document.querySelector('#oneDayAfterHumidity').innerHTML = `${data.forecast.forecastday[1].day.avghumidity}%`;
+
 
         //third card
+        document.querySelector('#longTwoDaysAfter').innerHTML = getDayName(2)
         document.querySelector('#twoDaysAfterFirstTemp').innerHTML = formatTemp(data.forecast.forecastday[2].hour[8].temp_c);
         document.querySelector('#twoDaysAfterSecondTemp').innerHTML = formatTemp(data.forecast.forecastday[2].hour[12].temp_c);
         document.querySelector('#twoDaysAfterThirdTemp').innerHTML = formatTemp(data.forecast.forecastday[2].hour[17].temp_c);
@@ -120,7 +141,10 @@ function success(pos) {
         document.querySelector('#twoDaysAfterLongDecsription').innerHTML = `Послезавтра ожидается ${data.forecast.forecastday[2].day.condition.text.toLowerCase()}`;
         document.querySelector('#twoDaysAfterTempAtDay').innerHTML = formatTemp(data.forecast.forecastday[2].day.avgtemp_c);
         document.querySelector('#twoDaysAfterTempAtNight').innerHTML = formatTemp(data.forecast.forecastday[2].day.mintemp_c)
-        document.getElementById('twoDaysAfterIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[2].day.condition.icon)})`;
+        document.getElementById('twoDaysAfterIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[2].day.condition.icon, false)})`;
+        document.querySelector('#twoDaysAfterWind').innerHTML = (data.forecast.forecastday[2].day.maxwind_kph / 3.6).toFixed(1);
+        document.querySelector('#twoDaysAfterPressure').innerHTML = Math.floor(data.forecast.forecastday[2].hour[14].pressure_mb * 0.750064);
+        document.querySelector('#twoDaysAfterHumidity').innerHTML = `${data.forecast.forecastday[2].day.avghumidity}%`;
 
         //detailedForecast
         document.querySelector('#todayNumDate').innerHTML = currentDate.getDate()
