@@ -45,6 +45,14 @@ function getTimeNow(){
         minutes = "0" + minutes;
     return hours + ":" + minutes;
 }
+function getPressureDisc(pressure){
+    if (+pressure < 745){
+        return ['Пониженное', 'yellow']
+    } else if (+pressure > 765){
+        return ['Повышенное', 'red']
+    }
+    return ['Норма', 'green']
+}
 setInterval(() => {
     document.querySelector('#currentTime').innerHTML = String(getTimeNow());
 }, 1000);
@@ -68,30 +76,54 @@ function success(pos) {
     fetch(urlforForecast).then((response) => {
         return response.json()
     }).then((data) => {
+        console.log(data)
 
-        for (const block of document.getElementsByClassName('dayBlock')){
-            block.classList.toggle('hide')
-            block.classList.toggle('blockLoading')
-        }
         document.querySelector('table').classList.toggle('hide')
         document.querySelector('table').classList.toggle('blockLoading')
 
+        document.querySelectorAll('.dayBlock').forEach(element => element.classList.toggle('hide'));
+        document.querySelectorAll('.dayBlock').forEach(element => element.classList.toggle('blockLoading'));
+
+        document.querySelectorAll('.mobileDetailedBlock').forEach(element => element.classList.toggle('hide'));
+        document.querySelectorAll('.mobileDetailedBlock').forEach(element => element.classList.toggle('blockLoading'));
+        document.querySelectorAll('.mobileDetailedBlock').forEach(element => element.style.padding = '10px 20px');
+
         document.querySelector('#cityName').classList.toggle('hide')
+    
+        document.querySelectorAll('.mobileDetailedHeader').forEach(element => element.classList.toggle('hide'));
+        document.querySelectorAll('.detailedHeader').forEach(element => element.classList.toggle('hide'));
 
-        document.querySelector('.detailedHeaderTitle').classList.toggle('hide')
 
-        document.querySelector('#todayNumDate').classList.toggle('hide')
+        document.querySelectorAll('.mobileDetailedDate').forEach(element => element.classList.toggle('hide'));
+        document.querySelectorAll('.mobileDetailedDate').forEach(element => element.classList.toggle('blockLoading'));
 
+        const daysHolder = document.querySelector('.daysHolder');
+        const nextBtn = document.querySelector('.btn.next');
+        const prevBtn = document.querySelector('.btn.prev');
+        const itemWidth = document.querySelector('.dayBlock').clientWidth
+        
+        nextBtn.addEventListener('click', scrollToNextItem);
+        prevBtn.addEventListener('click', scrollToPrevItem);
+        
+        function scrollToNextItem() {
+           daysHolder.scrollBy({left: itemWidth, top: 0, behavior: 'smooth'});
+        }
+        function scrollToPrevItem() {
+           daysHolder.scrollBy({left: -itemWidth, top: 0, behavior: 'smooth'});
+        }
+        
         var city = data.location.name;
         var currentDate = new Date()
-        var isDayNow = getTimeNow().split(":") > 6 && getTimeNow().split(":") < 21
+        var isDayNow = getTimeNow().split(":")[0] > 6 && getTimeNow().split(":")[0] < 21
 
-        const makeIconPath = (icon, today=true) => {
+        const makeIconPath = (icon, today=true, isNight=false) => {
             if (today){
+                if (isNight){
+                    return nightIcons + icon.split('/').at(-1)
+                }
                 return  (isDayNow ? dayIcons : nightIcons) + icon.split('/').at(-1)
-            } else {
-                return dayIcons + icon.split('/').at(-1)
-            }
+            } 
+            return dayIcons + icon.split('/').at(-1)
         }
         const setBg = (decscription) => {
             const desc = decscription.toLowerCase()
@@ -147,48 +179,61 @@ function success(pos) {
         document.querySelector('#twoDaysAfterHumidity').innerHTML = `${data.forecast.forecastday[2].day.avghumidity}%`;
 
         //detailedForecast
-        document.querySelector('#todayNumDate').innerHTML = currentDate.getDate()
-
-            //morning
-        document.querySelector('#morningTemp').innerHTML = formatTemp(data.forecast.forecastday[0].hour[8].temp_c);
+        document.querySelectorAll('.todayNumDate').forEach(element => element.innerHTML = currentDate.getDate());
+        //morning
+        document.querySelectorAll('.morningTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[8].temp_c));
         document.querySelector('#morningDecs').innerHTML = data.forecast.forecastday[0].hour[8].condition.text;
-        document.querySelector('#morningPressure').innerHTML = Math.floor(data.forecast.forecastday[0].hour[8].pressure_mb * 0.750064);
-        document.querySelector('#morningHumidity').innerHTML = `${data.forecast.forecastday[0].hour[8].humidity}%`;
-        document.querySelector('#morningWind').innerHTML = (data.forecast.forecastday[0].hour[8].wind_kph / 3.6).toFixed(1);
-        document.querySelector('#morningWindDir').innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[8].wind_dir)
-        document.querySelector('#morningFeelsLike').innerHTML = formatTemp(data.forecast.forecastday[0].hour[8].feelslike_c)
-        document.getElementById('morningIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[8].condition.icon)})`;
+        const morningPressure = Math.floor(data.forecast.forecastday[0].hour[8].pressure_mb * 0.750064)
+        document.querySelectorAll('.morningPressure').forEach(element => element.innerHTML = morningPressure);
+        document.querySelectorAll('.morningPressureDisc').forEach(element => element.innerHTML = getPressureDisc(morningPressure)[0]);
+        document.querySelectorAll('.morningPressureDisc').forEach(element => element.style.color = getPressureDisc(morningPressure)[1]);
+        document.querySelectorAll('.morningHumidity').forEach(element => element.innerHTML = `${data.forecast.forecastday[0].hour[8].humidity}%`);
+        document.querySelectorAll('.morningWind').forEach(element => element.innerHTML = (data.forecast.forecastday[0].hour[8].wind_kph / 3.6).toFixed(1));
+        document.querySelectorAll('.morningWindTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[8].windchill_c));
+        document.querySelectorAll('.morningWindDir').forEach(element => element.innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[8].wind_dir));
+        document.querySelectorAll('.morningFeelsLike').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[8].feelslike_c));
+        document.querySelectorAll('.morningIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[8].condition.icon)})`);
 
         //afternoon
-        document.querySelector('#afternoonTemp').innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].temp_c);
+        document.querySelectorAll('.afternoonTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].temp_c));
         document.querySelector('#afternoonDecs').innerHTML = data.forecast.forecastday[0].hour[14].condition.text;
-        document.querySelector('#afternoonPressure').innerHTML = Math.floor(data.forecast.forecastday[0].hour[14].pressure_mb * 0.750064);
-        document.querySelector('#afternoonHumidity').innerHTML = `${data.forecast.forecastday[0].hour[14].humidity}%`;
-        document.querySelector('#afternoonWind').innerHTML = (data.forecast.forecastday[0].hour[14].wind_kph / 3.6).toFixed(1);
-        document.querySelector('#afternoonWindDir').innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[14].wind_dir)
-        document.querySelector('#afternoonFeelsLike').innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].feelslike_c)
-        document.getElementById('afternoonIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[14].condition.icon)})`;
-
+        const afternoonPressure = Math.floor(data.forecast.forecastday[0].hour[14].pressure_mb * 0.750064)
+        document.querySelectorAll('.afternoonPressure').forEach(element => element.innerHTML = afternoonPressure);
+        document.querySelectorAll('.afternoonPressureDisc').forEach(element => element.innerHTML = getPressureDisc(afternoonPressure)[0]);
+        document.querySelectorAll('.afternoonPressureDisc').forEach(element => element.style.color = getPressureDisc(afternoonPressure)[1]);
+        document.querySelectorAll('.afternoonHumidity').forEach(element => element.innerHTML = `${data.forecast.forecastday[0].hour[14].humidity}%`);
+        document.querySelectorAll('.afternoonWind').forEach(element => element.innerHTML = (data.forecast.forecastday[0].hour[14].wind_kph / 3.6).toFixed(1));
+        document.querySelectorAll('.afternoonWindTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].windchill_c));
+        document.querySelectorAll('.afternoonWindDir').forEach(element => element.innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[14].wind_dir));
+        document.querySelectorAll('.afternoonFeelsLike').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].feelslike_c));
+        document.querySelectorAll('.afternoonIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[14].condition.icon)})`);
         //evening
-        document.querySelector('#eveningTemp').innerHTML = formatTemp(data.forecast.forecastday[0].hour[20].temp_c);
+        document.querySelectorAll('.eveningTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[20].temp_c));
         document.querySelector('#eveningDecs').innerHTML = data.forecast.forecastday[0].hour[20].condition.text;
-        document.querySelector('#eveningPressure').innerHTML = Math.floor(data.forecast.forecastday[0].hour[20].pressure_mb * 0.750064);
-        document.querySelector('#eveningHumidity').innerHTML = `${data.forecast.forecastday[0].hour[20].humidity}%`;
-        document.querySelector('#eveningWind').innerHTML = (data.forecast.forecastday[0].hour[20].wind_kph / 3.6).toFixed(1);
-        document.querySelector('#eveningWindDir').innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[20].wind_dir)
-        document.querySelector('#eveningFeelsLike').innerHTML = formatTemp(data.forecast.forecastday[0].hour[20].feelslike_c)
-        document.getElementById('eveningIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[20].condition.icon)})`;
+        const eveningPressure = Math.floor(data.forecast.forecastday[0].hour[20].pressure_mb * 0.750064)
+        document.querySelectorAll('.eveningPressure').forEach(element => element.innerHTML = afternoonPressure);
+        document.querySelectorAll('.eveningPressureDisc').forEach(element => element.innerHTML = getPressureDisc(eveningPressure)[0]);
+        document.querySelectorAll('.eveningPressureDisc').forEach(element => element.style.color = getPressureDisc(eveningPressure)[1]);
+        document.querySelectorAll('.eveningHumidity').forEach(element => element.innerHTML = `${data.forecast.forecastday[0].hour[20].humidity}%`);
+        document.querySelectorAll('.eveningWind').forEach(element => element.innerHTML = (data.forecast.forecastday[0].hour[20].wind_kph / 3.6).toFixed(1));
+        document.querySelectorAll('.eveningWindTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[20].windchill_c));
+        document.querySelectorAll('.eveningWindDir').forEach(element => element.innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[20].wind_dir));
+        document.querySelectorAll('.eveningFeelsLike').forEach(element => element.innerHTML =  formatTemp(data.forecast.forecastday[0].hour[20].feelslike_c));
+        document.querySelectorAll('.eveningIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[20].condition.icon)})`);
 
         //night
-        document.querySelector('#nightTemp').innerHTML = formatTemp(data.forecast.forecastday[0].hour[23].temp_c);
-        document.querySelector('#nightDecs').innerHTML = data.forecast.forecastday[0].hour[23].condition.text;
-        document.querySelector('#nightPressure').innerHTML = Math.floor(data.forecast.forecastday[0].hour[23].pressure_mb * 0.750064);
-        document.querySelector('#nightHumidity').innerHTML = `${data.forecast.forecastday[0].hour[23].humidity}%`;
-        document.querySelector('#nightWind').innerHTML = (data.forecast.forecastday[0].hour[23].wind_kph / 3.6).toFixed(1);
-        document.querySelector('#nightWindDir').innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[23].wind_dir)
-        document.querySelector('#nightFeelsLike').innerHTML = formatTemp(data.forecast.forecastday[0].hour[23].feelslike_c)
-        document.getElementById('nightIcon').style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[23].condition.icon)})`;
-
+        document.querySelectorAll('.nightTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[23].temp_c));
+        document.querySelector('#nightDecs').innerHTML = data.forecast.forecastday[1].hour[2].condition.text;
+        const nightPressure = Math.floor(data.forecast.forecastday[1].hour[2].pressure_mb * 0.750064)
+        document.querySelectorAll('.nightPressure').forEach(element => element.innerHTML = afternoonPressure);
+        document.querySelectorAll('.nightPressureDisc').forEach(element => element.innerHTML = getPressureDisc(eveningPressure)[0]);
+        document.querySelectorAll('.nightPressureDisc').forEach(element => element.style.color = getPressureDisc(eveningPressure)[1]);
+        document.querySelectorAll('.nightHumidity').forEach(element => element.innerHTML = `${data.forecast.forecastday[1].hour[2].humidity}%`);
+        document.querySelectorAll('.nightWind').forEach(element => element.innerHTML = (data.forecast.forecastday[1].hour[2].wind_kph / 3.6).toFixed(1));
+        document.querySelectorAll('.nightWindTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[1].hour[2].windchill_c));
+        document.querySelectorAll('.nightWindDir').forEach(element => element.innerHTML = windDirTranslate(data.forecast.forecastday[1].hour[2].wind_dir));
+        document.querySelectorAll('.nightFeelsLike').forEach(element => element.innerHTML =  formatTemp(data.forecast.forecastday[1].hour[2].feelslike_c));
+        document.querySelectorAll('.nightIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[1].hour[2].condition.icon, true, true)})`);
 })
 
 }

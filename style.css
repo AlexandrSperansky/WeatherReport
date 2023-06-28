@@ -15,11 +15,12 @@
 }
 body {
 	margin: 0;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(222, 222, 222);
     height: 100vh;
     width: 100vw;
     font-family: 'Corbel';
     top: 0px !important;
+    scroll-behavior: smooth;
 
 }
 .goog-te-gadget-simple{
@@ -172,51 +173,55 @@ nav ul li a:hover{
     height: 100%;
     background-color:#000000a0;
 }
+.daysBlock{
+    z-index: 200;
+}
 .daysHolder{
     width: 100vw;
-justify-content: center;}
+    justify-content: center;}
 
 .dayBlock {
     z-index: 200;
     position: relative;
     width: 340px;
     font-size: 18px;
+    box-sizing: border-box;
     flex-direction: column;
     margin: 0px 20px;
     scroll-snap-align: start;
     scroll-margin-left:20px;
     backdrop-filter: blur(4px);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-  transition:opacity 0.5s linear;
 
 }
 .blockLoading::after{
     content: '';
     z-index: 400;
-    border-radius:  7px;
+    border-radius:  8px;
     position: absolute;
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
     background: linear-gradient(90deg, #4848489a, #d8d8d8a5);
 	background-size: 400% 400%;
     top: 50%;
     transform: translateY(-50%);
     content: "";
-	animation: gradient 2s ease infinite;
+	animation: gradient 1.5s ease infinite;
     visibility: visible
 }
 .hide{
     visibility: hidden
 }
 .dayHeader{
-    border-radius:  7px;
+    border-radius:  8px;
     background-color: var(--transpWhite);
     width: 100%;
     font-size: 19px;
 }
 .dayContent{
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     background-color: var(--transpWhite);
     padding: 10px 20px;
     padding-bottom: 30px;
@@ -235,13 +240,12 @@ justify-content: center;}
     padding: 10px 0;
 }
 
-.detailedHeader{
+.detailedHeader, .mobileDetailedDate{
     position: relative;
     top:25px;
     width: 70%;
     align-items: end;
-
-    }
+}
 #detailedTodayReport{
     padding-bottom: 50px;
     padding-top: 10px;
@@ -251,7 +255,7 @@ justify-content: center;}
     position: relative;
     background-color: #fff;
 }
-#todayNumDate{
+.todayNumDate{
     font-size: 90px;
     text-align: end;
     line-height: 69px;
@@ -317,7 +321,7 @@ justify-content: center;}
     font-size: 14px;
     font-weight: normal;
 }
-.detailedTodayTem{
+.detailedTodayTemp{
     font-size: 17px;
 }
 .weatherTable{
@@ -328,6 +332,7 @@ justify-content: center;}
     font-size: 15px;
     vertical-align: top;
 }
+
 td{
     padding-top: 10px;
     padding-bottom: 10px;
@@ -336,9 +341,7 @@ td div{
     font-size: 17px;
 }
 #map{
-
     width: 100%;
-    background-color:white;
     background-position: center;
     background-size: cover;
     justify-content: center;
@@ -349,14 +352,14 @@ td div{
     color:black;
     margin-top: 10px;
 }
+#mobileDetailedReport{
+    display: none;
+}
 #weatherMap{
     border-radius: 10px;
     height: 550px;
     width: 80%;
     margin: 30px 0;
-    background-position: center;
-    background-size: cover;
-    background-image: url('bg/mapExample.jpg');
 }
 .footer{
     height: 80px;
@@ -371,40 +374,150 @@ td div{
 }
 
 @media(max-width: 842px) {
+    .logoHolder{
+        display: none;
+    }
+    #cityName{
+        font-size: 25px;
+    }
+    #mainBlock{
+        height: 415px;
+    }
+    .dayTemp{
+        font-size: 45px;
+    }
+    .header{
+        height: 50px;
+    }
     .daysHolder{
-        padding-bottom: 30px;
-        transform: rotateX(180deg);
         z-index: 300;
         overflow-x: scroll;
         overflow-y:hidden;
         scroll-snap-type: x mandatory;
+        justify-content: start;
     }
-    .daysHolder::-webkit-scrollbar {
-        height: 8px;                     border-radius: 10%;    
-        margin: 0 10px;       
-      }
-      .daysHolder::-webkit-scrollbar-thumb {
-        background: var(--transpWhite);
-        border-radius: 10px 10px;
-        margin-left: 100px;
-      }
-    .dayBlock{
-        min-width: 90vw;
-        transform: rotateX(180deg);
+    .daysBlock{
         position: relative;
     }
-    .dayHeader{
+    .daysBlock .btn {
+        position: absolute;
+        top: 50%;
+        margin-top: 20px;
+        height: 24px;
+        width: 30px;
         border-radius: 15px;
+        background-color: rgba(95, 106, 117, 0.3);
+        z-index: 1;
+        line-height: 24px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        z-index: 500;
+     }
+     .daysBlock .btn.next {
+        right: 26px;
+     }
+     .daysBlock .btn.prev {
+        left: 26px;
+     }
+    .daysHolder::-webkit-scrollbar {
+        height: 0px;
+    }
+    .dayBlock{
+        min-width: 90vw;
+        position: relative;
+        scroll-snap-align:start;
+    }
+    .dayHeader{
+        border-radius: 20px;
     }
     .dayContent{
-        border-radius: 15x;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .timeTempHolder{
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    .blockLoading::after{
+        border-radius: 20px;
     }
     nav{
         display: none;
     }
-    .button{
-        z-index: 3000;
+    #detailedTodayReport{
+        display: none;
     }
+    #mobileDetailedReport{
+        display: flex;
+        margin-top: 12px;
+        flex-direction: column;
+        padding: 0 12px;
+    }
+    .todayNumDate{
+        font-size: 80px;
+}
+    .mobileDetailedDate{
+        position: relative;
+        width: 100%;
+        top: unset;
+        left: unset;
+    }
+    .mobileDetailedHeader{
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        font-size: 20px;
+        box-sizing: border-box;
+        padding: 20px 30px;
+        padding-bottom: 12px;
+    }
+    .mobileDetailedBlock{
+        width: 100%;
+        position: relative;
+        box-sizing: border-box;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        background: #ffffff;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 30px -12px;
+    }
+    .mobileBlockName{
+        font-size: 17px;
+    }
+            .mobileDetailedRow{
+        color: var(--darkFont);
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        justify-content: space-between;
+    }
+    .mobileCaption{
+        font-size: 14px;
+        margin-top: 10px;
+        font-weight: normal;
+        color: var(--lightFont);
+        margin-bottom: 5px;
+    }
+    .mobileDetailedTodayTemp{
+        flex-direction: column;
+    }
+    .wind, .humidity{
+        margin-top: 5px;
+    }
+    .windDir{
+        margin-top: 5px;
+        font-weight: normal;
+        font-size: 14px;
+        text-align: center;
+    }
+    .mobilePressureBlock{
+        margin-top: 5px;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
 }
 
     
