@@ -13,15 +13,21 @@
 	src: url(fonts/Corbel-Bold.ttf); 
     font-weight: bold;
 }
+html{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
 body {
 	margin: 0;
+    padding: 0;
+    width: auto;
     background-color: rgb(222, 222, 222);
-    height: 100vh;
-    width: 100vw;
     font-family: 'Corbel';
     top: 0px !important;
     scroll-behavior: smooth;
-
+    box-sizing: border-box;
 }
 .goog-te-gadget-simple{
     background-color: #efefef;
@@ -355,12 +361,26 @@ td div{
 #mobileDetailedReport{
     display: none;
 }
-#weatherMap{
-    border-radius: 10px;
-    height: 550px;
-    width: 80%;
-    margin: 30px 0;
+.mapHolder{
+    border-radius: 15px;
+    box-sizing: border-box;
+
+    height: 400px;
+    width: 100%;
+    padding: 0px 20px;
+    overflow: hidden;
+
 }
+#map{
+    width: 100%;
+    height: 100%;
+}
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
+    transition: 0.1s ease;
+    border:none !important;
+    border-radius: 15px;
+}
+
 .footer{
     height: 80px;
     width: 100%;
