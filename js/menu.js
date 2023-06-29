@@ -1,14 +1,15 @@
 $(document).ready(function() {
     $('.burger').click(function() {
-        $('.burger').toggleClass('open-menu');
-        $('nav').toggleClass('open-menu');
+        menuToggle()
         
+    });
+    $('.nav-item, .nav-item-mob').click(function(){
+        menuToggle()
     });
 });
 
-$(document).ready(function() {
-    $('.nav-item, .nav-item-mob').click(function(){
-        $('nav').toggleClass('open-menu');
-        $('.burger').toggleClass('open-menu');
-    });
-});
+const menuToggle = () => {
+    $('nav').toggleClass('open-menu');
+    $('.burger').toggleClass('open-menu');
+    $('.overlay').toggleClass('openOverlay');
+}

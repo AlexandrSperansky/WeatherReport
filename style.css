@@ -62,10 +62,7 @@ body {
 .google:hover{
     background-color: #d6d6d6;
 }
-.googleBtnImposter{
-    width: 137px;
-    height: 36px;
-}
+
 .skiptranslate iframe{
     visibility:hidden !important;
     display:none !important;
@@ -103,12 +100,16 @@ body {
 .mobileOnly{
     display: none;
 }
-
+nav{
+    z-index: 1000;
+}
 nav ul{
     list-style: none;
 }
 nav ul li{
     display: inline;
+    z-index: 1000;
+
 }
 nav ul li a{
    text-decoration: none;
@@ -123,6 +124,7 @@ nav ul li a{
 nav ul li a:hover{
     background-color: #d6d6d6;
 }
+
 .flex{
     display: flex;
 }
@@ -187,6 +189,7 @@ nav ul li a:hover{
 }
 #cityName{
     position: relative;
+    font-size: 20px;
     left: 20px;
 }
 .semiTransperentBg{
@@ -291,7 +294,7 @@ nav ul li a:hover{
     margin-top: 25px;
     width: 100%;
 }
-.infoIcon, .windIcon, .pressureIcon, .humidityIcon{
+.infoIcon, .windIcon, .pressureIcon, .humidityIconm, .sunIconDay{
     width: 20px;
     height: 20px;
     background-size: contain;
@@ -299,6 +302,10 @@ nav ul li a:hover{
 }
 .pressureIcon{
     background-image: url('icons/pressure.png');
+}
+.sunIconDay{
+    background-image: url('icons/day/113.png');
+
 }
 .windIcon{
     background-image: url('icons/wind.png');
@@ -374,6 +381,9 @@ td div{
 td div{
     justify-content: baseline;
 }
+.sunBlock{
+    position: relative;
+}
 .sun {
   width: 10em;
   height: 5em;
@@ -381,7 +391,6 @@ td div{
   border-bottom: none;
   border-radius: 150px 150px 0 0;
   overflow: hidden;
-  background: mistyrose;
   overflow: visible;
   position: relative;
 }
@@ -558,9 +567,24 @@ td div{
 .__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after {
     visibility: hidden !important;
 }
+#goog-gt-tt + div{
+    display: none !important;
+}
 @media(max-width: 842px) {
     .pcOnly{
         display: none;
+    }
+    .overlay{
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        background: #00000039;
+        opacity: 0;
+        transition: 0.3s;
+    }
+    .openOverlay{
+        opacity: 1;
+        z-index: 500;
     }
     .mobileOnly{
         display: block;
@@ -576,9 +600,22 @@ td div{
 		height: 35px;
 		display: block;
 	}
+    .goog-te-gadget-simple{
+        background-color: #efefef00;
+    }
     .goog-te-gadget-simple span:nth-child(3), .goog-te-gadget-simple span:first-child{
         font-size: 20px;
         font-weight: normal;
+    }
+    .goog-te-gadget-simple{
+        background-color: #efefef00;
+        border: none !important;
+        border-radius: 50px !important;
+        padding: 8px 3px !important;
+        transition: 0.2s;
+    }
+    .goog-te-gadget-simple:hover{
+        background-color: #d6d6d6;
     }
     
     nav.open-menu {
@@ -609,8 +646,8 @@ td div{
 		height: 100vh;
 		opacity: 0.93;
 		padding-top: 10px;
-        z-index: 500;
-        top:51px;
+        z-index: 1000;
+        top:49px;
 	}
     .nav-item-mob{
         font-size: 20px;
@@ -630,6 +667,9 @@ td div{
     }
     .header{
         height: 50px;
+    }
+    .goog-te-gadget-simple {
+        background-color: #ffffff00 !important;
     }
     .daysHolder{
         z-index: 300;
@@ -745,9 +785,11 @@ td div{
     }
     .wind, .humidity{
         margin-top: 5px;
+        text-align: center;
     }
     .windDir{
         margin-top: 5px;
+        margin-left: 0;
         font-weight: normal;
         font-size: 14px;
         text-align: center;
@@ -803,7 +845,7 @@ td div{
     }
     .sunHeader div{
         text-align: center;
-        font-size: 16px;
+        font-size: 15px;
     }
     .sunHeader{
         justify-content: space-between;
@@ -811,7 +853,7 @@ td div{
         width: 100%;
         font-size: 20px;
         box-sizing: border-box;
-        padding: 0px 30px;
+        padding: 0px 25px;
         padding-bottom: 12px;
     }
     .sunRow{

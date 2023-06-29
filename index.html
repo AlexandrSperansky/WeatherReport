@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
     <script src="js/jquery-min.js"></script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/google-translate.js"></script>
@@ -17,14 +17,16 @@
 	<link rel="stylesheet" type="text/css" href="leaflet/leaflet-openweathermap.css" />
 	<script type="text/javascript" src="leaflet/leaflet-openweathermap.js"></script>
     <script src="js/menu.js"></script>
-
     <script src="js/main.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
 
     <title>Weather Report</title>
 </head>
 <body>
-
-    <div id='header'class="header flex space-evenly align-center">
+    <div class="header flex space-evenly align-center">
         <div class="burger">
             <span></span>
         </div>
@@ -33,16 +35,17 @@
             Погода
         </div>
         <nav>
-            <ul id="navList">
+            <ul>
                 <li><a class="nav-item-mob" href="#">Главная</a></li>
                 <li><a class="nav-item-mob" href="#detailedTodayReport">Подробный прогноз</a></li>
                 <li><a class="nav-item-mob" href="#map">Карта осадков</a></li>
-                <li>        <div id='google_translate_element' class="googleTrans"></div>
+                <li><div id='google_translate_element' class="googleTrans"></div>
                 </li>
               </ul>
         </nav>
         <div class="cityName darkFont bold hide" id="cityName">Saint Petersburg</div>
     </div>
+    <div class="overlay" onclick="menuToggle()"></div>
     <div id='mainBlock' class="stormBg flex align-center space-evenly">
         <div class="semiTransperentBg"></div>
         <div class="daysBlock">
@@ -376,7 +379,7 @@
                     </tbody>
                 </table>        
         </article>
-        <div class="sunBlock lightFont">
+        <div class="sunBlock lightFont hide blockLoading">
             <div class="sun">
                 <img src="icons/sunrise.png" alt="" class="sunIcon sunriseIcon">
                 <img src="icons/sunset.png" alt="" class="sunIcon sunsetIcon">
@@ -511,6 +514,7 @@
             <div class="sunItem"><img src="icons/sunset.png" alt="" class="sunIcon sunsetIcon">
                 <div class="sunset"></div></div>
                 <div class="sunItem">
+                    <img src="icons/day/113.png" class="moonIcon">
                     <div class="dayLong"></div>
                 </div>
         <div class="sunItem">

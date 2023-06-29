@@ -184,6 +184,9 @@ return response.json()
     document.querySelectorAll('.dayBlock').forEach(element => element.classList.toggle('hide'));
     document.querySelectorAll('.dayBlock').forEach(element => element.classList.toggle('blockLoading'));
 
+    document.querySelectorAll('.sunBlock').forEach(element => element.classList.toggle('hide'));
+    document.querySelectorAll('.sunBlock').forEach(element => element.classList.toggle('blockLoading'));
+
     document.querySelectorAll('.mobileDetailedBlock').forEach(element => element.classList.toggle('hide'));
     document.querySelectorAll('.mobileDetailedBlock').forEach(element => element.classList.toggle('blockLoading'));
     document.querySelectorAll('.mobileDetailedBlock').forEach(element => element.style.padding = '10px 20px');
@@ -272,8 +275,8 @@ return response.json()
 
     document.querySelectorAll('.moonPhase').forEach(element => element.innerHTML = moonPhaseTranslate(data.forecast.forecastday[0].astro.moon_phase));
 
-    document.querySelectorAll('.sunrise').forEach(element => element.innerHTML = sunset);
-    document.querySelectorAll('.sunset').forEach(element => element.innerHTML = sunrise);
+    document.querySelectorAll('.sunrise').forEach(element => element.innerHTML = sunrise);
+    document.querySelectorAll('.sunset').forEach(element => element.innerHTML = sunset);
     console.log(new Date(data.forecast.forecastday[0].astro.sunset))
     const dayLong = new Date(2019, 5, 11, sunset.split(":")[0],  sunset.split(":")[1], 0) - new Date(2019, 5, 11, sunrise.split(":")[0], sunrise.split(":")[1], 0)
     document.querySelectorAll('.dayLong').forEach(element => element.innerHTML = msToTime(dayLong));
