@@ -8,10 +8,10 @@ $.ajaxSetup({
     async: false
 });
 
-$.getJSON('http://ip-api.com/json', function(data) {
+$.getJSON("http://ipinfo.io", function(data) {
     console.log(data)
-    lat = data['lat']
-    lon = data['lon']
+    lat = data.loc.split(',')[0]
+    lon = data.loc.split(',')[1]
     
 });
 $.getJSON('https://www.weatherapi.com/docs/conditions.json', function(data) {
