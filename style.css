@@ -13,6 +13,7 @@
 	src: url(fonts/Corbel-Bold.ttf); 
     font-weight: bold;
 }
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 html{
     box-sizing: border-box;
     margin: 0;
@@ -23,7 +24,6 @@ body {
 	margin: 0;
     padding: 0;
     width: auto;
-    background-color: rgb(222, 222, 222);
     font-family: 'Corbel';
     top: 0px !important;
     scroll-behavior: smooth;
@@ -68,7 +68,7 @@ body {
 .logoHolder{
     font-size: 28px;
     color: black;
-    align-items: flex-end;
+    align-items: center;
 }
 .logo, .dayIcon, .detailedIcon{
     height: 50px;
@@ -80,6 +80,7 @@ body {
 }
 .logo{
     margin-right: 8px;
+    background-image: url('./icons/day/176.png');
 }
 .dayIcon{
     height: 48px;
@@ -160,14 +161,13 @@ nav ul li a:hover{
     margin-bottom: 15px;
 }
 #mainBlock{
-    width: 100vw;
     height: 470px;
     position: relative;
     background-size:cover;
-    background-position: top;
+    background-position: center;
     background-repeat: no-repeat;
     flex-direction: column;
-    background-image: url('bg/sunny1.jpg');
+    background-image: url('bg/clear1.jpg');
 }
 #cityName{
     position: relative;
@@ -181,9 +181,10 @@ nav ul li a:hover{
 }
 .daysBlock{
     z-index: 200;
+    width: 100%;
 }
 .daysHolder{
-    width: 100vw;
+    width: 100%;
     justify-content: center;}
 
 .dayBlock {
@@ -196,6 +197,7 @@ nav ul li a:hover{
     margin: 0px 20px;
     scroll-snap-align: start;
     scroll-margin-left:20px;
+
     backdrop-filter: blur(4px);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 
@@ -230,6 +232,7 @@ nav ul li a:hover{
     border-top-right-radius: 8px;
     background-color: var(--transpWhite);
     padding: 10px 20px;
+    box-sizing: border-box;
     padding-bottom: 30px;
 }
 .dayTemp{
@@ -249,7 +252,7 @@ nav ul li a:hover{
 .detailedHeader, .mobileDetailedDate{
     position: relative;
     top:25px;
-    width: 70%;
+    width: 100%;
     align-items: end;
 }
 #detailedTodayReport{
@@ -331,7 +334,7 @@ nav ul li a:hover{
     font-size: 17px;
 }
 .weatherTable{
-    width: 70%;
+    width: 750px;
     position: relative;
 }
 .tableHeader{
@@ -345,6 +348,73 @@ td{
 }
 td div{
     font-size: 17px;
+}
+.windDir{
+    font-weight: normal;
+    font-size: 14px;
+    margin-left: 5px;
+}
+td div{
+    justify-content: baseline;
+}
+.sun {
+  width: 10em;
+  height: 5em;
+  border: 3px rgb(233, 196, 47) dashed;
+  border-bottom: none;
+  border-radius: 150px 150px 0 0;
+  overflow: hidden;
+  background: mistyrose;
+  overflow: visible;
+  position: relative;
+}
+
+.sunIcon{
+    width: 35px;
+    height: auto;
+}
+.moonIcon{
+    width: 28px;
+}
+.sunsetIcon{
+    position: absolute;
+    left: -19px;
+    bottom: -22px;
+}
+
+.sunriseIcon{
+    position: absolute;
+    right: -19px;
+    bottom: -22px;
+}
+.sunrise{
+    position: absolute;
+    top: 101px;
+    left: -21px;
+}
+.sunset{
+    position: absolute;
+    top: 101px;
+    right: -21px;
+}
+.dayLong{
+    position: absolute;
+    top: 101px;
+    left: 39px;
+}
+.lightDayName{
+    font-size: 15px;
+    position: absolute;
+    left: 30%;
+    top: 40%;
+    width: min-content;
+    text-align: center;
+}
+.moon{
+    margin-top: 55px;
+}
+.moonIcon{
+    margin-right: 8px;
 }
 #map{
     width: 100%;
@@ -361,20 +431,40 @@ td div{
 #mobileDetailedReport{
     display: none;
 }
-.mapHolder{
-    border-radius: 15px;
+.mapBlock{
+    background-color: #fff;
     box-sizing: border-box;
-
-    height: 400px;
+    height: 500px;
     width: 100%;
-    padding: 0px 20px;
+    padding: 0px 50px;
+    margin-bottom: 20px;
     overflow: hidden;
-
+}
+.mapHolder{
+    width: 100%;
+    height: 100%;
 }
 #map{
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+    border-radius: 15px;
+    outline:0 !important;
+    touch-action: none;
 }
+.mapName{
+    font-size: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: black;
+    margin-bottom: 10px;
+    }
+.owm-legend-item img{
+    border-radius: 10px;
+    height: 200px;
+}
+
 .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
     transition: 0.1s ease;
     border:none !important;
@@ -396,6 +486,9 @@ td div{
 @media(max-width: 842px) {
     .logoHolder{
         display: none;
+    }
+    .sunBlock{
+        display: none
     }
     #cityName{
         font-size: 25px;
@@ -421,7 +514,7 @@ td div{
     }
     .daysBlock .btn {
         position: absolute;
-        top: 50%;
+        top: 53%;
         margin-top: 20px;
         height: 24px;
         width: 30px;
@@ -430,9 +523,11 @@ td div{
         z-index: 1;
         line-height: 24px;
         text-align: center;
-        color: white;
+        color: var(--lightFont);
         font-weight: bold;
         z-index: 500;
+        font-family: 'Caprasimo', cursive;
+
      }
      .daysBlock .btn.next {
         right: 26px;
@@ -472,7 +567,8 @@ td div{
         display: flex;
         margin-top: 12px;
         flex-direction: column;
-        padding: 0 12px;
+        padding: 0 100px;
+        background: #dddddd;
     }
     .todayNumDate{
         font-size: 80px;
@@ -537,7 +633,88 @@ td div{
         align-items: center;
         flex-direction: column;
     }
+    .mapBlock {
+        background: #dddddd;
+    }
+    .mapName{
+        background: #dddddd;
+    }
+    .sunIcon{
+        width: 35px;
+        height: auto;
+    }
+    .moonIcon{
+        width: 28px;
+    }
+    .sunsetIcon{
+        position: unset
+    }
+    
+    .sunriseIcon{
+        position: unset
+    }
+    .sunrise{
+        position: unset
+    }
+    .sunset{
+        position: unset
+    }
+    .dayLong{
+        position: unset;
+    }
+    .lightDayName{
+        font-size: 15px;
+        position: absolute;
+        left: 30%;
+        top: 40%;
+        width: min-content;
+        text-align: center;
+    }
+    .moon{
+        margin-top: 55px;
+    }
+    .sunRow{
+        align-items: center;
+        justify-content: center;
+    }
+    .sunHeader div{
+        text-align: center;
+        font-size: 16px;
+    }
+    .sunHeader{
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        font-size: 20px;
+        box-sizing: border-box;
+        padding: 0px 30px;
+        padding-bottom: 12px;
+    }
+    .sunRow{
+        margin-top: 8px;
+    }
+    .sunItem{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
+}
+@media(max-width: 613px) {
+    #mobileDetailedReport{
+        padding: 0 50px;
+    }
+    .mapBlock {
+        padding: 0 20px;
+    }
+
+}
+@media(max-width: 445px) {
+    #mobileDetailedReport{
+        padding: 0 18px;
+
+    }
 }
 
     
