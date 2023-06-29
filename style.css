@@ -51,11 +51,21 @@ body {
 .goog-te-gadget-simple span:nth-child(3), .goog-te-gadget-simple span:first-child{
     font-family: 'Corbel';
     font-weight: bold;
-    font-size: 15px;
+    font-size: 18px;
     color: var(--lightFont);
     margin-right: 5px;
 }
-
+#google_translate_element{
+    display: inline-block;
+    font-size: 18px;
+}
+.google:hover{
+    background-color: #d6d6d6;
+}
+.googleBtnImposter{
+    width: 137px;
+    height: 36px;
+}
 .skiptranslate iframe{
     visibility:hidden !important;
     display:none !important;
@@ -86,6 +96,12 @@ body {
     height: 48px;
     width: 48px;
     margin-right: 10px;
+}
+.pcOnly{
+    display: block;
+}
+.mobileOnly{
+    display: none;
 }
 
 nav ul{
@@ -171,6 +187,7 @@ nav ul li a:hover{
 }
 #cityName{
     position: relative;
+    left: 20px;
 }
 .semiTransperentBg{
     position: absolute;
@@ -472,20 +489,132 @@ td div{
 }
 
 .footer{
-    height: 80px;
+    height: 50px;
     width: 100%;
     justify-content: center;
     font-size: 20px;
-    background-color: rgb(212, 212, 255);
+    background-color: rgb(212, 212, 212);
+
 }
 .footer a{
     text-decoration: none;
     color: var(--darkFont)
 }
+.footer a:hover{
+    text-decoration: underline;
+    color: var(--redFont)
+}
 
+
+.burger {
+	display: none;
+	transition: 0.3s;
+}
+
+.burger span,
+.burger:after,
+.burger:before {
+	height: 4px;
+	width: 100%;
+	position: absolute;
+	background: #515758 !important;
+	margin: 0 auto;
+	border-radius: 2px;
+}
+
+.burger span {
+	top: 21px;
+}
+
+.burger:after,
+.burger:before {
+	content: '';
+}
+
+.burger:after {
+	bottom: 2px;
+}
+
+.burger:before {
+	top: 13px;
+}
+
+.burger.open-menu span {
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.burger.open-menu:before {
+	transform: rotate(38deg);
+	top: 16px;
+	transition: 0.4s;
+}
+
+.burger.open-menu:after {
+	transform: rotate(-38deg);
+	bottom: 16px;
+	transition: 0.4s;
+}
+.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after {
+    visibility: hidden !important;
+}
 @media(max-width: 842px) {
+    .pcOnly{
+        display: none;
+    }
+    .mobileOnly{
+        display: block;
+    }
     .logoHolder{
         display: none;
+    }
+    .burger {
+        top: 3px;
+        left: 16px;
+		position: absolute;
+		width: 40px;
+		height: 35px;
+		display: block;
+	}
+    .goog-te-gadget-simple span:nth-child(3), .goog-te-gadget-simple span:first-child{
+        font-size: 20px;
+        font-weight: normal;
+    }
+    
+    nav.open-menu {
+		left: 0;
+		margin: 0;
+		backdrop-filter: blur(3px);
+        padding: 0;
+	}
+    .nav-item-mob {
+		display: block;
+		z-index: 600;
+        margin-right: 5px;
+	}
+    nav ul {
+        padding-left: 10px;
+    }
+    nav {
+		display: inline;
+		position: absolute;
+		top: 55px;
+		left: 0;
+		padding-left: 20px;
+		background: rgb(245, 246, 246, 0.9);
+		box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+		left: calc(-100% - 20px);
+		transition: all 0.4s ease;
+		margin: 0;
+		height: 100vh;
+		opacity: 0.93;
+		padding-top: 10px;
+        z-index: 500;
+        top:51px;
+	}
+    .nav-item-mob{
+        font-size: 20px;
+        font-weight: normal;
     }
     .sunBlock{
         display: none
@@ -556,9 +685,6 @@ td div{
     }
     .blockLoading::after{
         border-radius: 20px;
-    }
-    nav{
-        display: none;
     }
     #detailedTodayReport{
         display: none;
@@ -633,11 +759,9 @@ td div{
         align-items: center;
         flex-direction: column;
     }
-    .mapBlock {
+    body{
         background: #dddddd;
-    }
-    .mapName{
-        background: #dddddd;
+
     }
     .sunIcon{
         width: 35px;

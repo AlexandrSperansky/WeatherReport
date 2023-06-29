@@ -10,7 +10,7 @@ function myOwmPopup(data) {
 }
 
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	maxZoom: 18, attribution: '[insert correct attribution here!]' });
+	maxZoom: 18 });
 
 var rain = L.OWM.rainClassic({opacity: 0.5 ,appId: mapApikey});
 var snow = L.OWM.snow({opacity: 0.5, appId: mapApikey});

@@ -18,6 +18,7 @@ $.getJSON('https://www.weatherapi.com/docs/conditions.json', function(data) {
     console.log(data.length)
     
 });
+
 const windDirTranslate = (direction) => {
     const windDir = {
         N: 'С',
