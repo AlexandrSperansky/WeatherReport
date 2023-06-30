@@ -329,7 +329,7 @@ const fillAllBlock = (lat, lon) => {
 }
 
 jQuery.ajaxSetup({async:false});
-  $.getJSON('http://ip-api.com/json/', function(data) {
+  $.getJSON('https://ip-api.com/json/', function(data) {
     fillAllBlock(data.lat, data.lon)
     createMap(data.lat, data.lon)
   })
