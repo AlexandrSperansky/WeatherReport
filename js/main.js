@@ -9,6 +9,7 @@ const windDirTranslate = (direction) => {
         S: 'Ю',
         E: 'В'
     }
+    var currentPosition
 
     if (direction.length == 1){
         return windDir[direction]
@@ -214,7 +215,8 @@ const fillAllBlock = (lat, lon) => {
         document.querySelector('#todayThirdTemp').innerHTML = formatTemp(data.forecast.forecastday[0].hour[17].temp_c);
         document.querySelector('#todayFourthTemp').innerHTML = formatTemp(data.forecast.forecastday[0].hour[21].temp_c);
         if (countOfRequests == 1){
-            document.querySelector("#cityName").innerHTML = data.location.name + ', ' + data.location.country
+            currentPosition = data.location.name + ', ' + data.location.country
+            document.querySelector("#cityName").innerHTML = currentPosition
         }
         document.querySelector('#todayTempNow').innerHTML = formatTemp(data.current.temp_c);
         document.querySelector('#todayFeelsLike').innerHTML = `Ощущается как ${formatTemp(data.current.feelslike_c)}`;
@@ -329,17 +331,19 @@ const fillAllBlock = (lat, lon) => {
 }
 
 jQuery.ajaxSetup({async:false});
-  $.getJSON('https://ipinfo.io?token=77c3bafacf5402', function(data) {
+$.getJSON('https://ipinfo.io?token=77c3bafacf5402', function(data) {
     console.log(data)
     lat = data.loc.split(',')[0]
     lon = data.loc.split(',')[1]
-
     fillAllBlock(lat, lon)
+    document.getElementById('mapHolder').innerHTML = "<div id='map'></div>";
+
     createMap(lat, lon)
-  })
-  .fail(function() { 
+})
+.fail(function() { 
     navigator.geolocation.getCurrentPosition(function(location) {
         fillAllBlock(location.coords.latitude, location.coords.longitude)
         createMap(location.coords.latitude, location.coords.longitude)
-      });
+    });
 })
+
