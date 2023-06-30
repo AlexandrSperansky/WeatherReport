@@ -16,8 +16,6 @@
     <link rel="stylesheet" type="text/css" href="leaflet/leaflet.css" />
 	<link rel="stylesheet" type="text/css" href="leaflet/leaflet-openweathermap.css" />
 	<script type="text/javascript" src="leaflet/leaflet-openweathermap.js"></script>
-    <script src="js/menu.js"></script>
-    <script src="js/main.js"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -43,7 +41,10 @@
                 </li>
               </ul>
         </nav>
-        <div class="cityName darkFont bold hide" id="cityName">Saint Petersburg</div>
+        <form onsubmit="return false" id="searchForm" method="get">
+            <input id="search" placeholder="Город или район">
+            <input id="searchSubmit" type="submit" value="">
+          </form>
     </div>
     <div class="overlay" onclick="menuToggle()"></div>
     <div id='mainBlock' class="stormBg flex align-center space-evenly">
@@ -58,7 +59,7 @@
                         <div class="dayDiscripion darkFont" id="todayLongDecsription">Сегодня солнечно</div>
                     </div>
                     <div class="dayContent">
-                        <div class="cityName daycityName bold darkFont" id="cityName2">Дворцовый округ, Санкт-Петербург</div>
+                        <div class="cityName daycityName bold darkFont" id="cityName">Дворцовый округ, Санкт-Петербург</div>
                         <div class="flex lightFont">
                              <!--в блок с id todayDateName нужно передать длинное название для недели сегодня-->
                             <div id="todayDateName" class="mrgr10">Понедельник</div>
@@ -514,7 +515,7 @@
             <div class="sunItem"><img src="icons/sunset.png" alt="" class="sunIcon sunsetIcon">
                 <div class="sunset"></div></div>
                 <div class="sunItem">
-                    <img src="icons/day/113.png" class="moonIcon">
+                    <img src="icons/day/113.png" class="sunInfoIcon">
                     <div class="dayLong"></div>
                 </div>
         <div class="sunItem">
@@ -527,7 +528,7 @@
     </div>
     <div class='mapName bold'>Интерактивная карта</div>
     <div class="mapBlock">
-        <div class="mapHolder">
+        <div id="mapHolder">
             <div id = "map"></div>
         </div>
     </div>
@@ -537,6 +538,9 @@
         <a href="https://github.com/AlexandrSperansky/WeatherReport" target="_blank">Github</a>
     </div>
 </body>
-<script src="js/map.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
 
 </html>

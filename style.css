@@ -51,13 +51,15 @@ body {
 .goog-te-gadget-simple span:nth-child(3), .goog-te-gadget-simple span:first-child{
     font-family: 'Corbel';
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
     color: var(--lightFont);
     margin-right: 5px;
 }
 #google_translate_element{
     display: inline-block;
     font-size: 18px;
+    position: relative;
+    bottom: 2px;
 }
 .google:hover{
     background-color: #d6d6d6;
@@ -114,7 +116,7 @@ nav ul li{
 nav ul li a{
    text-decoration: none;
    color: var(--lightFont);
-   font-size: 18px;
+   font-size: 17px;
    margin-right: 20px;
    font-weight: bold;
    padding: 8px;
@@ -124,6 +126,45 @@ nav ul li a{
 nav ul li a:hover{
     background-color: #d6d6d6;
 }
+#searchSubmit{
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background-image: url(icons/search.png);
+    opacity: 0.4;
+    background-size: cover;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-left: 5px;
+}
+#searchForm{
+    display: flex;
+    align-items: center;
+}
+#searchSubmit:hover{
+    filter: brightness(0.7);
+}
+#search{
+    width: 200px;
+    height: 30px;
+    border: none !important;
+    font-size: 15px;
+    border-radius: 5px;
+    transition: 0.3s ease-in;
+    background-color: rgb(255, 255, 255);
+}
+#search:focus{
+   outline: none;
+}
+#search::-webkit-input-placeholder{
+    color: #919191;
+}
+#searchSubmit:hover ~ #searchForm{
+    width: 100px;
+}
+
 
 .flex{
     display: flex;
@@ -186,11 +227,6 @@ nav ul li a:hover{
     background-repeat: no-repeat;
     flex-direction: column;
     background-image: url('bg/clear1.jpg');
-}
-#cityName{
-    position: relative;
-    font-size: 20px;
-    left: 20px;
 }
 .semiTransperentBg{
     position: absolute;
@@ -466,7 +502,7 @@ td div{
     margin-bottom: 20px;
     overflow: hidden;
 }
-.mapHolder{
+#mapHolder{
     width: 100%;
     height: 100%;
 }
@@ -564,6 +600,9 @@ td div{
 	bottom: 16px;
 	transition: 0.4s;
 }
+#google_translate_element{
+    margin-left: -7px
+}
 .__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after {
     visibility: hidden !important;
 }
@@ -574,6 +613,10 @@ td div{
     .pcOnly{
         display: none;
     }
+    #search{
+        height: 50px;
+        width: 130px;
+    }
     .overlay{
         height: 100vh;
         width: 100vw;
@@ -581,6 +624,8 @@ td div{
         background: #00000039;
         opacity: 0;
         transition: 0.3s;
+        z-index: -1000;
+
     }
     .openOverlay{
         opacity: 1;
@@ -666,7 +711,7 @@ td div{
         font-size: 45px;
     }
     .header{
-        height: 50px;
+        height: 60px;
     }
     .goog-te-gadget-simple {
         background-color: #ffffff00 !important;
@@ -766,11 +811,11 @@ td div{
     .mobileBlockName{
         font-size: 17px;
     }
-            .mobileDetailedRow{
+    .mobileDetailedRow{
         color: var(--darkFont);
         padding: 0 10px;
         box-sizing: border-box;
-
+        align-items: end;
         justify-content: space-between;
     }
     .mobileCaption{
@@ -811,6 +856,11 @@ td div{
     }
     .moonIcon{
         width: 28px;
+    }
+    .sunInfoIcon{
+        object-fit: cover;
+        width: 53px;
+        height: 35px;
     }
     .sunsetIcon{
         position: unset

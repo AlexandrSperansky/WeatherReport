@@ -1,7 +1,7 @@
 
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
-        includedLanguages: 'ru,en,',
+        includedLanguages: 'ru,en',
         pageLanguage: 'ru',
         autoDisplay: false,
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE
