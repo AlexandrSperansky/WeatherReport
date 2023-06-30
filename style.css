@@ -493,8 +493,7 @@ td div{
 #mobileDetailedReport{
     display: none;
 }
-.mapBlock{
-    background-color: #fff;
+.mapBlock{
     box-sizing: border-box;
     height: 500px;
     width: 100%;
