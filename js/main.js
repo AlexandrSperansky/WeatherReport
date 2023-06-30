@@ -329,9 +329,13 @@ const fillAllBlock = (lat, lon) => {
 }
 
 jQuery.ajaxSetup({async:false});
-  $.getJSON('http://ip-api.com/json/', function(data) {
-    fillAllBlock(data.lat, data.lon)
-    createMap(data.lat, data.lon)
+  $.getJSON('https://ipinfo.io?token=77c3bafacf5402', function(data) {
+    console.log(data)
+    lat = data.loc.split(',')[0]
+    lon = data.loc.split(',')[1]
+
+    fillAllBlock(lat, lon)
+    createMap(lat, lon)
   })
   .fail(function() { 
     navigator.geolocation.getCurrentPosition(function(location) {

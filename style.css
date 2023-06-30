@@ -493,7 +493,8 @@ td div{
 #mobileDetailedReport{
     display: none;
 }
-.mapBlock{
+.mapBlock{
+
     box-sizing: border-box;
     height: 500px;
     width: 100%;
@@ -614,7 +615,8 @@ td div{
     }
     #search{
         height: 50px;
-        width: 130px;
+        width: 180px;
+        font-size: 16px;
     }
     .overlay{
         height: 100vh;
@@ -637,8 +639,8 @@ td div{
         display: none;
     }
     .burger {
-        top: 3px;
-        left: 16px;
+        top: 7px;
+        left: 14px;
 		position: absolute;
 		width: 40px;
 		height: 35px;
@@ -704,7 +706,7 @@ td div{
         font-size: 25px;
     }
     #mainBlock{
-        height: 415px;
+        height: 435px;
     }
     .dayTemp{
         font-size: 45px;
