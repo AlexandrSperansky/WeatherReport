@@ -137,7 +137,20 @@ function msToTime(duration) {
 
     return `${hours} ч ${minutes} мин`;
 }
-    
+const getMonthName = {
+    0: 'января',
+    1: 'февраля',
+    2: 'марта',
+    3: 'апреля',
+    4: 'мая',
+    5: 'июня',
+    6: 'июля',
+    7: 'августа',
+    8: 'сентября',
+    9: 'октября',
+    10: 'ноября',
+    11: 'декабря',
+}
 const makeIconPath = (icon, today=true, isNight=false) => {
     if (today){
         if (isNight){
@@ -149,15 +162,7 @@ const makeIconPath = (icon, today=true, isNight=false) => {
         return dayIcons + icon.split('/').at(-1)
     }
 }
-var transliterate = (text, engToRus) => {
-    var rus = "щ   ш  ч  ц  ю  я  ё  ж  з  ъ  ы  э  а б в г д е з и й к л м н о п р с т у ф х ь".split(/ +/g);
-    var eng = "shh sh ch cz yu ya yo zh th `` y' e` a b v g d e z i j k l m n o p r s t u f h `".split(/ +/g);
-    for (var x = 0; x < rus.length; x++) {
-        text = text.split(engToRus ? eng[x] : rus[x]).join(engToRus ? rus[x] : eng[x]);
-        text = text.split(engToRus ? eng[x].toUpperCase() : rus[x].toUpperCase()).join(engToRus ? rus[x].toUpperCase() : eng[x].toUpperCase());
-    }
-    return text;
-}
+
 const fillAllBlock = (lat, lon) => {
     const urlforForecast = `https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${lat},${lon}&days=4&lang=ru`;
     fetch(urlforForecast).then((response) => {
@@ -261,6 +266,8 @@ const fillAllBlock = (lat, lon) => {
     
         document.querySelectorAll('.todayNumDate').forEach(element => element.innerHTML = currentDate.getDate());
         const sunset = convertTime12to24(data.forecast.forecastday[0].astro.sunset)
+        document.querySelectorAll('.todayMothDate').forEach(element => element.innerHTML = getMonthName[currentDate.getMonth()]);
+
         const sunrise = convertTime12to24(data.forecast.forecastday[0].astro.sunrise)
     
         document.querySelectorAll('.moonPhase').forEach(element => element.innerHTML = moonPhaseTranslate(data.forecast.forecastday[0].astro.moon_phase));
@@ -283,7 +290,7 @@ const fillAllBlock = (lat, lon) => {
         document.querySelectorAll('.morningWindTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[8].windchill_c));
         document.querySelectorAll('.morningWindDir').forEach(element => element.innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[8].wind_dir));
         document.querySelectorAll('.morningFeelsLike').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[8].feelslike_c));
-        document.querySelectorAll('.morningIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[8].condition.icon, true, false)})`);
+        document.querySelectorAll('.morningIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[8].condition.icon, false, false)})`);
     
         //afternoon
         document.querySelectorAll('.afternoonTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].temp_c));
@@ -297,7 +304,7 @@ const fillAllBlock = (lat, lon) => {
         document.querySelectorAll('.afternoonWindTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].windchill_c));
         document.querySelectorAll('.afternoonWindDir').forEach(element => element.innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[14].wind_dir));
         document.querySelectorAll('.afternoonFeelsLike').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].feelslike_c));
-        document.querySelectorAll('.afternoonIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[14].condition.icon, true, false)})`);
+        document.querySelectorAll('.afternoonIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[14].condition.icon, false, false)})`);
         //evening
         document.querySelectorAll('.eveningTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[20].temp_c));
         document.querySelector('#eveningDecs').innerHTML = data.forecast.forecastday[0].hour[20].condition.text;
@@ -310,7 +317,7 @@ const fillAllBlock = (lat, lon) => {
         document.querySelectorAll('.eveningWindTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[20].windchill_c));
         document.querySelectorAll('.eveningWindDir').forEach(element => element.innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[20].wind_dir));
         document.querySelectorAll('.eveningFeelsLike').forEach(element => element.innerHTML =  formatTemp(data.forecast.forecastday[0].hour[20].feelslike_c));
-        document.querySelectorAll('.eveningIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[20].condition.icon, true, false)})`);
+        document.querySelectorAll('.eveningIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[20].condition.icon, false, false)})`);
     
         //night
         document.querySelectorAll('.nightTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[23].temp_c));
