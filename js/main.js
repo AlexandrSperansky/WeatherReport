@@ -196,22 +196,6 @@ const fillAllBlock = (lat, lon) => {
         document.querySelectorAll('.mobileDetailedDate').forEach(element => element.classList.remove('hide'));
         document.querySelectorAll('.mobileDetailedDate').forEach(element => element.classList.remove('blockLoading'));
     
-        const daysHolder = document.querySelector('.daysHolder');
-        const nextBtn = document.querySelector('.btn.next');
-        const prevBtn = document.querySelector('.btn.prev');
-        const itemWidth = document.querySelector('.dayBlock').clientWidth
-    
-        nextBtn.addEventListener('click', scrollToNextItem);
-        prevBtn.addEventListener('click', scrollToPrevItem);
-    
-    
-        function scrollToNextItem() {
-            daysHolder.scrollBy({left: itemWidth, top: 0, behavior: 'smooth'});
-        }
-        function scrollToPrevItem() {
-            daysHolder.scrollBy({left: -itemWidth, top: 0, behavior: 'smooth'});
-        }
-    
         //header
     
         //fisrt card

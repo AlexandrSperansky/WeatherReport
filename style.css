@@ -33,12 +33,10 @@ body {
     background-color: #efefef;
     border: none !important;
     border-radius: 50px !important;
-    padding: 8px 3px !important;
+    padding: 4.4px 1px !important;
     transition: 0.2s;
 }
-.goog-te-gadget-simple span{
-    content: 'lang';
-}
+
 .goog-te-gadget-simple:hover{
     background-color: #d6d6d6;
 }
@@ -61,6 +59,9 @@ body {
     position: relative;
     bottom: 2px;
 }
+#google_translate_element span{
+    color: var(--darkFont)
+}
 .google:hover{
     background-color: #d6d6d6;
 }
@@ -78,6 +79,7 @@ body {
     font-size: 28px;
     color: black;
     align-items: center;
+    padding: 0 20px;
 }
 .logo, .dayIcon, .detailedIcon{
     height: 50px;
@@ -119,7 +121,7 @@ nav ul li a{
    font-size: 17px;
    margin-right: 20px;
    font-weight: bold;
-   padding: 8px;
+   padding: 5px;
    border-radius: 20px;
    transition: 0.2s;
 }
@@ -142,6 +144,7 @@ nav ul li a:hover{
 #searchForm{
     display: flex;
     align-items: center;
+    padding: 0px 20px;
 }
 #searchSubmit:hover{
     filter: brightness(0.7);
@@ -440,13 +443,13 @@ td div{
 }
 .sunsetIcon{
     position: absolute;
-    left: -19px;
+    left: 144px;
     bottom: -22px;
 }
 
 .sunriseIcon{
     position: absolute;
-    right: -19px;
+    right: 144px;
     bottom: -22px;
 }
 .sunrise{
@@ -601,7 +604,7 @@ td div{
 	transition: 0.4s;
 }
 #google_translate_element{
-    margin-left: -7px
+    margin-left: -7px;
 }
 .__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after {
     visibility: hidden !important;
@@ -609,7 +612,23 @@ td div{
 #goog-gt-tt + div{
     display: none !important;
 }
-@media(max-width: 842px) {
+@media(max-width: 1098px) {
+    .logoHolder{
+        display: none;
+    }
+    ul{
+        padding: 0;
+    }
+}
+@media(max-width: 980px) {
+    .detailedReportHolder{
+        flex-direction: column;
+    }
+    .sunBlock{
+        margin-bottom: 20px;
+    }
+}
+@media(max-width: 866px) {
     .pcOnly{
         display: none;
     }
@@ -649,6 +668,7 @@ td div{
 		width: 40px;
 		height: 35px;
 		display: block;
+        z-index: 10000
 	}
     .goog-te-gadget-simple{
         background-color: #efefef00;
@@ -657,29 +677,27 @@ td div{
         font-size: 20px;
         font-weight: normal;
     }
-    .goog-te-gadget-simple{
-        background-color: #efefef00;
-        border: none !important;
-        border-radius: 50px !important;
-        padding: 8px 3px !important;
-        transition: 0.2s;
-    }
+   
     .goog-te-gadget-simple:hover{
         background-color: #d6d6d6;
     }
     
     nav.open-menu {
-		left: 0;
 		margin: 0;
 		backdrop-filter: blur(3px);
         padding: 0;
+        padding-top: 52px;
+        top:0px;
+        left: 0px
 	}
     .nav-item-mob {
 		display: block;
 		z-index: 600;
         margin-right: 5px;
-            font-size: 20px;
-            font-weight: normal;
+        font-size: 20px;
+        font-weight: normal;
+        margin-bottom: 10px;
+
 
 	}
     nav ul {
@@ -788,6 +806,8 @@ td div{
     }
     .todayNumDate{
         font-size: 80px;
+        position: relative;
+        top: 10px;
 }
     .mobileDetailedDate{
         position: relative;
