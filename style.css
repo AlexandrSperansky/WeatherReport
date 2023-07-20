@@ -591,6 +591,10 @@ td div{
 	opacity: 0;
 	transition: 0.5s;
 }
+.burger.open-menu{
+
+    position: fixed;
+}
 
 .burger.open-menu:before {
 	transform: rotate(38deg);
@@ -644,6 +648,7 @@ td div{
     .overlay{
         height: 100vh;
         width: 100vw;
+        top:0;
         position: fixed;
         background: #00000039;
         opacity: 0;
@@ -681,15 +686,7 @@ td div{
     .goog-te-gadget-simple:hover{
         background-color: #d6d6d6;
     }
-    
-    nav.open-menu {
-		margin: 0;
-		backdrop-filter: blur(3px);
-        padding: 0;
-        padding-top: 52px;
-        top:0px;
-        left: 0px
-	}
+   
     .nav-item-mob {
 		display: block;
 		z-index: 600;
@@ -706,19 +703,24 @@ td div{
     nav {
 		display: inline;
 		position: absolute;
-		top: 55px;
-		left: 0;
-		padding-left: 20px;
 		background: rgba(255, 255, 255, 0.9);
 		box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 		left: calc(-100% - 20px);
 		transition: all 0.4s ease;
-		margin: 0;
 		height: 100vh;
+        padding: 0;
+        top:0px;
+        padding-top: 52px;
 		opacity: 0.93;
-		padding-top: 10px;
         z-index: 1000;
-        top:49px;
+	}
+    nav.open-menu {
+		margin: 0;
+		backdrop-filter: blur(3px);
+    
+        
+        left: 0px;
+        position: fixed;
 	}
     
     .sunBlock{
