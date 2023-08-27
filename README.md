@@ -1,5 +1,5 @@
 # WeatherReport
-<img src="screenshots/image.png" alt="drawing" style="width:300px;"/>     <img src="screenshots/image-2.png" alt="drawing" style="width:100px;"/><br>
+<img src="screenshots/image.png" alt="drawing" style="width:800px;"/>     <img src="screenshots/image-2.png" alt="drawing" style="width:300px;"/><br>
 
 On <a href='https://alexandrsperansky.github.io/WeatherReport/'>this site</a> you can view the weather forecast for three days, a detailed forecast for today, as well as view an interactive weather map, with precipitation, clouds, and so on. <br>
 A search by city names is also available. Just enter the name of the city, in any register and in any language, and the site will find the weather forecast for this place. The user's location is determined through the IP address, or, if it is not available, through a browser request to the user.<br>
