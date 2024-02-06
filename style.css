@@ -4,16 +4,7 @@
     --lightFont: #5b5454;
     --redFont: #d14b4b;
   }
-@font-face {
-	font-family: 'Corbel'; 
-	src: url(fonts/Corbel.ttf); 
-}
-@font-face {
-	font-family: 'Corbel'; 
-	src: url(fonts/Corbel-Bold.ttf); 
-    font-weight: bold;
-}
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap');
 html{
     box-sizing: border-box;
     margin: 0;
@@ -24,7 +15,7 @@ body {
 	margin: 0;
     padding: 0;
     width: auto;
-    font-family: 'Corbel';
+    font-family: 'Nunito';
     top: 0px !important;
     scroll-behavior: smooth;
     box-sizing: border-box;
@@ -35,35 +26,6 @@ body {
     border-radius: 50px !important;
     padding: 4.4px 1px !important;
     transition: 0.2s;
-}
-
-.goog-te-gadget-simple:hover{
-    background-color: #d6d6d6;
-}
-.goog-te-gadget img {
-    display: none;
-}
-.goog-te-combo{
-    display: none;
-}
-.goog-te-gadget-simple span:nth-child(3), .goog-te-gadget-simple span:first-child{
-    font-family: 'Corbel';
-    font-weight: bold;
-    font-size: 17px;
-    color: var(--lightFont);
-    margin-right: 5px;
-}
-#google_translate_element{
-    display: inline-block;
-    font-size: 18px;
-    position: relative;
-    bottom: 2px;
-}
-#google_translate_element span{
-    color: var(--darkFont)
-}
-.google:hover{
-    background-color: #d6d6d6;
 }
 
 .skiptranslate iframe{
@@ -120,9 +82,8 @@ nav ul li a{
    color: var(--darkFont);
    font-size: 17px;
    margin-right: 20px;
-   font-weight: bold;
-   padding: 5px;
-   border-radius: 20px;
+   padding: 5px 7px 5px 7px;
+   border-radius: 9px;
    transition: 0.2s;
 }
 nav ul li a:hover{
@@ -145,6 +106,10 @@ nav ul li a:hover{
     display: flex;
     align-items: center;
     padding: 0px 20px;
+    cursor: pointer;
+}
+#search:hover{
+    background-color: #d6d6d6;
 }
 #searchSubmit:hover{
     filter: brightness(0.7);
@@ -155,7 +120,7 @@ nav ul li a:hover{
     border: none !important;
     font-size: 15px;
     border-radius: 5px;
-    transition: 0.3s ease-in;
+    transition: 0.2s;
     background-color: rgb(255, 255, 255);
 }
 #search:focus{
@@ -305,7 +270,14 @@ nav ul li a:hover{
     background-color: var(--transpWhite);
 }
 .timeTempBlock{
+    text-align: center;
+
+    font-size: 13px;
     padding: 10px 0;
+}
+.timeTempBlock div{
+    text-align: center;
+    font-size: 15px;
 }
 
 .detailedHeader, .mobileDetailedDate{
@@ -387,6 +359,7 @@ nav ul li a:hover{
 }
 
 .detailedHeaderTitle{
+    font-weight: bold;
     font-size: 17px;
 }
 .partOfday{
@@ -403,15 +376,28 @@ nav ul li a:hover{
 .tableHeader{
     font-size: 15px;
     vertical-align: top;
+    border-bottom: 1.5px solid gainsboro;
 }
 
 td{
     padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 14px;
 }
 td div{
-    font-size: 17px;
+    font-size: 16px;
 }
+
+
+table{
+    border-collapse: collapse;
+}
+
+table th, table td{ /* Added padding for better layout after collapsing */
+    padding: 7px 16px;
+}
+
+
 .windDir{
     font-weight: normal;
     font-size: 14px;
@@ -463,12 +449,14 @@ td div{
     right: -21px;
 }
 .dayLong{
+    font-size: 14px;
     position: absolute;
     top: 101px;
-    left: 39px;
+    left: 43px;
 }
 .lightDayName{
     font-size: 15px;
+    color: var(--darkFont);
     position: absolute;
     left: 30%;
     top: 40%;
@@ -607,15 +595,7 @@ td div{
 	bottom: 16px;
 	transition: 0.4s;
 }
-#google_translate_element{
-    margin-left: -7px;
-}
-.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *, .__web-inspector-hidebefore-shortcut__::before, .__web-inspector-hideafter-shortcut__::after {
-    visibility: hidden !important;
-}
-#goog-gt-tt + div{
-    display: none !important;
-}
+
 @media(max-width: 1098px) {
     .logoHolder{
         display: none;
@@ -675,17 +655,6 @@ td div{
 		display: block;
         z-index: 10000
 	}
-    .goog-te-gadget-simple{
-        background-color: #efefef00;
-    }
-    .goog-te-gadget-simple span:nth-child(3), .goog-te-gadget-simple span:first-child{
-        font-size: 20px;
-        font-weight: normal;
-    }
-   
-    .goog-te-gadget-simple:hover{
-        background-color: #d6d6d6;
-    }
    
     .nav-item-mob {
 		display: block;
@@ -738,9 +707,6 @@ td div{
     .header{
         height: 60px;
     }
-    .goog-te-gadget-simple {
-        background-color: #ffffff00 !important;
-    }
     .daysHolder{
         z-index: 300;
         overflow-x: scroll;
@@ -765,8 +731,6 @@ td div{
         color: var(--lightFont);
         font-weight: bold;
         z-index: 500;
-        font-family: 'Caprasimo', cursive;
-
      }
      .daysBlock .btn.next {
         right: 26px;
@@ -804,7 +768,7 @@ td div{
         margin-top: 12px;
         flex-direction: column;
         padding: 0 100px;
-        background: #dddddd;
+        background: #eceef2;
     }
     .todayNumDate{
         font-size: 80px;
@@ -833,7 +797,6 @@ td div{
         border-radius: 20px;
         margin-bottom: 20px;
         background: #ffffff;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 30px -12px;
     }
     .mobileBlockName{
         font-size: 17px;
@@ -874,7 +837,7 @@ td div{
         flex-direction: column;
     }
     body{
-        background: #dddddd;
+        background: #eceef2;
 
     }
     .sunIcon{

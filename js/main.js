@@ -17,7 +17,7 @@ const windDirTranslate = (direction) => {
     else if (direction.length == 2){
         return windDir[direction[1]] + windDir[direction[0]]
     }
-    return windDir[direction[0]] + windDir[direction[1]]+ windDir[direction[2]]
+    return windDir[direction[1]]+ windDir[direction[2]]
 
 }
 const moonPhaseTranslate = (decs) =>{
@@ -74,7 +74,7 @@ setInterval(() => {
 
 const formatTemp = (temp) => {
 if (String(temp)[0] == '-'){
-    return `-${temp}°`
+    return `${temp}°`
 } else{
     return `+${temp}°`
 }
@@ -286,6 +286,7 @@ const fillAllBlock = (lat, lon) => {
         document.querySelectorAll('.afternoonHumidity').forEach(element => element.innerHTML = `${data.forecast.forecastday[0].hour[14].humidity}%`);
         document.querySelectorAll('.afternoonWind').forEach(element => element.innerHTML = (data.forecast.forecastday[0].hour[14].wind_kph / 3.6).toFixed(1));
         document.querySelectorAll('.afternoonWindTemp').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].windchill_c));
+        console.log(data.forecast.forecastday[0].hour[14].wind_dir)
         document.querySelectorAll('.afternoonWindDir').forEach(element => element.innerHTML = windDirTranslate(data.forecast.forecastday[0].hour[14].wind_dir));
         document.querySelectorAll('.afternoonFeelsLike').forEach(element => element.innerHTML = formatTemp(data.forecast.forecastday[0].hour[14].feelslike_c));
         document.querySelectorAll('.afternoonIcon').forEach(element => element.style.backgroundImage = `url(${makeIconPath(data.forecast.forecastday[0].hour[14].condition.icon, false, false)})`);
