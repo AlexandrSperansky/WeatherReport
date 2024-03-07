@@ -83,45 +83,46 @@ nav ul li a{
    font-size: 17px;
    margin-right: 20px;
    padding: 5px 7px 5px 7px;
-   border-radius: 9px;
+   border-radius: 7px;
    transition: 0.2s;
 }
 nav ul li a:hover{
-    background-color: #d6d6d6;
+    background-color: #ECEEF2;
+
 }
 #searchSubmit{
     height: 20px;
     width: 20px;
-    border-radius: 100%;
     border: none;
     position: relative;
     background-image: url(icons/search.png);
     opacity: 0.4;
     background-size: cover;
-    transition: 0.3s;
+    transition: 0.2s;
     cursor: pointer;
     margin-left: 5px;
 }
 #searchForm{
     display: flex;
     align-items: center;
-    padding: 0px 20px;
+    padding: 2.5px 8px;
     cursor: pointer;
+    background-color: #ECEEF2;
+    border-radius: 7px;
 }
-#search:hover{
-    background-color: #d6d6d6;
-}
+
 #searchSubmit:hover{
-    filter: brightness(0.7);
+    opacity: 0.7;
+
 }
 #search{
     width: 200px;
     height: 30px;
     border: none !important;
     font-size: 15px;
-    border-radius: 5px;
     transition: 0.2s;
-    background-color: rgb(255, 255, 255);
+    background-color: #ECEEF2;
+
 }
 #search:focus{
    outline: none;
@@ -617,7 +618,7 @@ td div{
         display: none;
     }
     #search{
-        height: 50px;
+        height: 28px;
         width: 126px;
         font-size: 16px;
     }
